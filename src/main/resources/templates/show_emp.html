@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>SHOW EMP</title>
+
+<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ -->
+</head>
+
+
+<body>
+	<div align="center">
+		<h1>SHOW HỌC VIÊN</h1>
+		<br />
+		<a href="addemp">Thêm học viên mới</a>
+		<table border="1" cellpadding="10">
+
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>TÊN HỌC VIÊN</td>
+					<td>NGÀY SINH</td>
+					<td>GIỚI TÍNH</td>
+					<td>ĐỊA CHỈ</td>
+					<td>EMAIL</td>
+					<td>SĐT</td> 
+					<td>ACTION</td> 
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp: ${listEmp}">
+				<td th:text="${emp.id}"></td>
+				<td th:text="${emp.ten}"></td>
+				<td th:text="${emp.ngaysinh}"></td>
+				<td th:text="${emp.gioitinh}"></td> 
+				<td th:text="${emp.diachi}"></td>
+				<td th:text="${emp.email}"></td>
+				<td th:text="${emp.sdt}"></td>
+				 <td>
+				 <a th:href="@{'/editemp/' + ${emp.id}}">EDIT</a>
+				 <a th:href="@{'/deleteemp/'+${emp.id}}">DELETE</a>
+				 </td>
+				</tr> 
+			</tbody>
+
+		</table>
+	</div>
+</body>
+</html>

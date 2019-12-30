@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Khóa Học</title>
+</head>
+<body>
+	<div align="center">
+		<h1>EDIT KHÓA HỌC</h1>
+		<form action="#" th:action="@{/save}" th:object="${kh}" method="post">
+			<table border="1" cellpadding="10">
+
+				<tr>
+					<td>ID khóa học:</td>
+					<td><input type="text" th:field="*{khoahoc_id}"
+						readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Tên khóa học:</td>
+					<td><input type="text" th:field="*{tenkhoahoc}" /></td>
+				</tr>
+				<tr>
+					<td>Ngày bắt đầu</td>
+					<td><input type="date" th:field="*{ngaybatdau}" /></td>
+				</tr>
+				<tr>
+					<td>Ngày kết thúc</td>
+					<td><input type="date" th:field="*{ngayketthuc}" /></td>
+				</tr>
+
+				<tr>
+					<td><button type="submit">SAVE</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

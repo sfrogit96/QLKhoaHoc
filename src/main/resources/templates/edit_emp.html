@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Edit Học Viên</title>
+</head>
+<body>
+	<div align="center">
+		<h1>EDIT HỌC VIÊN</h1>
+		<form action="#" th:action="@{/empsave}" th:object="${emp}" method="post">
+			<table border="1" cellpadding="10">
+
+				<tr>
+					<td>ID Học Viên:</td>
+					<td><input type="text" th:field="*{id}"
+						readonly="readonly" /></td>
+				</tr>
+				<tr>
+					<td>Tên học viên</td>
+					<td><input type="text" th:field="*{ten}" /></td>
+				</tr>
+
+				<tr>
+					<td>Ngày sinh</td>
+					<td><input type="date" th:field="*{ngaysinh}" /></td>
+				</tr>
+ 
+				<tr>
+					<td>Giới tính</td>
+					<td><input type="text" th:field="*{gioitinh}" /></td>
+				</tr>
+ 
+				<tr>
+					<td>Địa chỉ</td>
+					<td><input type="text" th:field="*{diachi}" /></td>
+				</tr>
+
+				<tr>
+					<td>Email</td>
+					<td><input type="text" th:field="*{email}" /></td>
+				</tr>
+
+				<tr>
+					<td>Số Điện Thoại</td>
+					<td><input type="text" th:field="*{sdt}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
