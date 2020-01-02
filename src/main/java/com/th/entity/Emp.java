@@ -1,12 +1,16 @@
 package com.th.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +28,8 @@ public class Emp {
 	private String diachi;
 	private String email;
 	private String sdt;
+	
+//	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
 	
 	
 	@Id
@@ -79,6 +85,20 @@ public class Emp {
 		return sdt;
 	}
 	public void setSdt(String sdt) {
+		this.sdt = sdt;
+	}
+	
+  	
+	public Emp() {
+		
+	}
+	public Emp(String ten, Date ngaysinh, String gioitinh, String diachi, String email, String sdt) {
+		super();
+		this.ten = ten;
+		this.ngaysinh = ngaysinh;
+		this.gioitinh = gioitinh;
+		this.diachi = diachi;
+		this.email = email;
 		this.sdt = sdt;
 	}
 	

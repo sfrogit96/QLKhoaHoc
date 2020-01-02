@@ -2,6 +2,7 @@ package com.th.controller;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.th.entity.Emp;
+import com.th.entity.EmpKhoaHoc;
+import com.th.entity.KhoaHoc;
 import com.th.service.EmpService;
+import com.th.service.KhoaHocService;
 
 @Controller
 public class EmpController {
 	
 	@Autowired
 	EmpService empService;
+	
+	@Autowired
+	KhoaHocService khoaHocService;
+	
+	
+	@RequestMapping("/test")
+	public String viewEmp() {
+		System.out.println("123");
+		Date date = new Date();
+		Emp emp = new Emp("Thien",date,"Nam","Hn","123@gmail.com","222");
+		KhoaHoc kh = new KhoaHoc("Khoa Hoc Test2", date, date);
+		EmpKhoaHoc empKhoaHoc = new EmpKhoaHoc();
+		 
+		System.out.println("456");
+		return "viewtest";
+	}
 	
 	@RequestMapping("/emp")
 	public String viewEmp(Model model) {

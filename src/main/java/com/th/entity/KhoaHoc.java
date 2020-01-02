@@ -1,11 +1,15 @@
 package com.th.entity;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,6 +26,8 @@ public class KhoaHoc {
 	private Date ngaybatdau;
 	private Date ngayketthuc;
 	
+//	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,6 +61,26 @@ public class KhoaHoc {
 	public void setNgayketthuc(Date ngayketthuc) {
 		this.ngayketthuc = ngayketthuc;
 	}
+	
+//	@OneToMany(mappedBy = "khoaHoc", cascade = CascadeType.ALL)
+//	public Set<EmpKhoaHoc> getEmpKhoaHoc() {
+//		return empKhoaHoc;
+//	}
+//	public void setEmpKhoaHoc(Set<EmpKhoaHoc> empKhoaHoc) {
+//		this.empKhoaHoc = empKhoaHoc;
+//	}
+	public KhoaHoc() {
+		
+	}
+	public KhoaHoc(String tenkhoahoc, Date ngaybatdau, Date ngayketthuc) {
+		super();
+		this.tenkhoahoc = tenkhoahoc;
+		this.ngaybatdau = ngaybatdau;
+		this.ngayketthuc = ngayketthuc;
+	}
+	
+	
+	
 	
 	
 }
