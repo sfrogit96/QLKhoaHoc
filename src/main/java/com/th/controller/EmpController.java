@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.th.entity.Emp;
 import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
+import com.th.service.EmpKhoaHocService;
 import com.th.service.EmpService;
 import com.th.service.KhoaHocService;
 
@@ -28,15 +29,46 @@ public class EmpController {
 	@Autowired
 	KhoaHocService khoaHocService;
 	
+	@Autowired
+	EmpKhoaHocService empKhoaHocService;
 	
-	@RequestMapping("/test")
-	public String viewEmp() {
+	
+	@RequestMapping("/viewtest/{id}")
+	public String viewKhoaHoc(@PathVariable(name = "id") int id, Model model) {
+		
+	 
+		
+		
 		System.out.println("123");
-		Date date = new Date();
-		Emp emp = new Emp("Thien",date,"Nam","Hn","123@gmail.com","222");
-		KhoaHoc kh = new KhoaHoc("Khoa Hoc Test2", date, date);
-		EmpKhoaHoc empKhoaHoc = new EmpKhoaHoc();
+//		Date date = new Date(); 
 		 
+//		KhoaHoc kh = new KhoaHoc("Khoa Hoc Test5", date, date);
+		KhoaHoc kh = khoaHocService.get(id);
+//		khoaHocService.save(kh);
+//		System.out.println(kh.toString());
+//		EmpKhoaHoc empKhoaHoc = new EmpKhoaHoc("hello4", kh);
+//		System.out.println(empKhoaHoc.toString());
+//		EmpKhoaHoc empKhoaHoc2 = new EmpKhoaHoc("hello5", kh);
+//		empKhoaHocService.save(empKhoaHoc);
+//		empKhoaHocService.save(empKhoaHoc2);
+		
+//		List<EmpKhoaHoc> empList = empKhoaHocService.findKH(kh);
+//		System.out.println(">>>>>");
+//		for(EmpKhoaHoc temp: empList) {
+//			System.out.println(temp);
+//		}
+		
+//		System.out.println(kh.toString());
+		
+		List<EmpKhoaHoc> khoahoc = kh.getEmpKhoaHoc();
+	
+//		List<EmpKhoaHoc> empList = empKhoaHocService.findKH(kh);
+//		System.out.println(">>>>>");
+//		for(EmpKhoaHoc temp: khoahoc) {
+//			System.out.println(temp);
+//		}
+//		khoaHocService.save(kh); 
+		model.addAttribute("listmota", khoahoc);
 		System.out.println("456");
 		return "viewtest";
 	}

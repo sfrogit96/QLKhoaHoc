@@ -45,13 +45,13 @@ public class KhoaHocController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveKhoaHoc(@ModelAttribute("kh") KhoaHoc kh) {
 		khoaHocService.save(kh);
-		return "redirect:/";
+		return "redirect:/khoahoc";
 	}
 	
 	@RequestMapping(value = "/deletekhoahoc/{id}", method = RequestMethod.GET)
 	public String deleteKhoaHoc(@PathVariable("id") int id) {
 		khoaHocService.delete(id);
-		return "redirect:/";
+		return "redirect:/khoahoc";
 	}
 	
 	@RequestMapping("/addkhoahoc")

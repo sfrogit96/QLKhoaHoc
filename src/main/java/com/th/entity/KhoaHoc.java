@@ -1,11 +1,14 @@
 package com.th.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +29,7 @@ public class KhoaHoc {
 	private Date ngaybatdau;
 	private Date ngayketthuc;
 	
-//	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
+	private List<EmpKhoaHoc> empKhoaHoc;
 
 	
 	@Id
@@ -62,13 +65,7 @@ public class KhoaHoc {
 		this.ngayketthuc = ngayketthuc;
 	}
 	
-//	@OneToMany(mappedBy = "khoaHoc", cascade = CascadeType.ALL)
-//	public Set<EmpKhoaHoc> getEmpKhoaHoc() {
-//		return empKhoaHoc;
-//	}
-//	public void setEmpKhoaHoc(Set<EmpKhoaHoc> empKhoaHoc) {
-//		this.empKhoaHoc = empKhoaHoc;
-//	}
+ 
 	public KhoaHoc() {
 		
 	}
@@ -80,7 +77,27 @@ public class KhoaHoc {
 	}
 	
 	
+	 public KhoaHoc(int khoahoc_id, String tenkhoahoc, Date ngaybatdau, Date ngayketthuc) {
+		super();
+		this.khoahoc_id = khoahoc_id;
+		this.tenkhoahoc = tenkhoahoc;
+		this.ngaybatdau = ngaybatdau;
+		this.ngayketthuc = ngayketthuc;
+	}
+	 
+	@OneToMany(mappedBy = "khoaHoc", fetch = FetchType.LAZY)
+	public List<EmpKhoaHoc> getEmpKhoaHoc() {
+		return empKhoaHoc;
+	}
+	public void setEmpKhoaHoc(List<EmpKhoaHoc> empKhoaHoc) {
+		this.empKhoaHoc = empKhoaHoc;
+	}
+	@Override
+	public String toString() {
+		return "KhoaHoc [khoahoc_id=" + khoahoc_id + ", tenkhoahoc=" + tenkhoahoc + ", ngaybatdau=" + ngaybatdau
+				+ ", ngayketthuc=" + ngayketthuc + ", empKhoaHoc=" + empKhoaHoc + "]";
+	}
 	
-	
+	 
 	
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
 import com.th.repository.KhoaHocRepository;
 
@@ -22,6 +23,10 @@ public class KhoaHocService {
 	public void save(KhoaHoc khoaHoc) {
 		khoaHocRepository.save(khoaHoc);
 	}
+	
+//	public void savemota(EmpKhoaHoc empKhoaHoc) {
+//		khoaHocRepository.save(empKhoaHoc);
+//	}
 	
 	public KhoaHoc get(int id) {
 		return khoaHocRepository.findById(id).get();
