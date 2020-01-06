@@ -2,11 +2,13 @@ package com.th.entity;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,7 @@ public class Emp {
 	private String sdt;
 	
 //	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
-	
+	private List<EmpKhoaHoc> empKhoaHoc;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -100,6 +102,20 @@ public class Emp {
 		this.diachi = diachi;
 		this.email = email;
 		this.sdt = sdt;
+	}
+	
+	
+	@OneToMany(mappedBy = "emp")
+	public List<EmpKhoaHoc> getEmpKhoaHoc() {
+		return empKhoaHoc;
+	}
+	public void setEmpKhoaHoc(List<EmpKhoaHoc> empKhoaHoc) {
+		this.empKhoaHoc = empKhoaHoc;
+	}
+	@Override
+	public String toString() {
+		return "Emp [id=" + id + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", gioitinh=" + gioitinh + ", diachi="
+				+ diachi + ", email=" + email + ", sdt=" + sdt + "]";
 	}
 	
 	

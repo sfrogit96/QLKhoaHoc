@@ -15,7 +15,6 @@
 		<br />
 		<a href="addkhoahoc">Tạo mới khóa học</a>
 		<table border="1" cellpadding="10">
-
 			<thead>
 				<tr>
 					<td>ID</td>
@@ -32,9 +31,12 @@
 				<td th:text="${kh.ngaybatdau}"></td>
 				<td th:text="${kh.ngayketthuc}"></td> 
 				<td> <a th:href="@{'/editkhoahoc/' + ${kh.khoahoc_id}}">EDIT</a>
-				&nbsp;&nbsp;&nbsp; 
+				&nbsp;&nbsp; 
 				<a th:href="@{'/deletekhoahoc/'+${kh.khoahoc_id}}">DELETE</a>
-  				<a th:href="@{'/viewtest/'+${kh.khoahoc_id}}">SHOW MÔ TẢ</a>
+				&nbsp;&nbsp; 
+  				<a th:href="@{'/empkhoahoc/'+${kh.khoahoc_id}}">SHOW MÔ TẢ</a>
+  				&nbsp;&nbsp; 
+  				<a th:href="@{'/addempkhoahoc/'+${kh.khoahoc_id}}">ADD HỌC VIÊN</a>
 				</td>
 				
 				</tr> 

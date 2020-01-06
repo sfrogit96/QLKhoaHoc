@@ -9,22 +9,26 @@ import com.th.entity.Emp;
 import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
 import com.th.repository.EmpKhoaHocRepository;
+import com.th.repository.EmpRepository;
 
 @Service
 public class EmpKhoaHocService {
-
 	@Autowired
 	private EmpKhoaHocRepository empKhoaHocRepository;
 	
-	public void save(EmpKhoaHoc empKhoaHoc) {
-		empKhoaHocRepository.save(empKhoaHoc);
+	public List<EmpKhoaHoc> listAll(){
+		return empKhoaHocRepository.findAll();
 	}
 	
-	public List<EmpKhoaHoc> findKH(KhoaHoc kh){
-		return empKhoaHocRepository.findByKhoaHoc(kh);
+	public void save(EmpKhoaHoc emp) {
+		empKhoaHocRepository.save(emp);
 	}
 	
-//	public List<EmpKhoaHoc> findAllKH(int id){
-//		return empKhoaHocRepository.findAllByCurrentKhoaHoc(id);
-//	}
+	public EmpKhoaHoc get(int id) {
+		return empKhoaHocRepository.findById(id).get();
+	}
+	
+	public void delete(int id) {
+		empKhoaHocRepository.deleteById(id);
+	}
 }

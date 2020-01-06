@@ -24,6 +24,9 @@ public class EmpKhoaHoc {
 	private int id; 
 	private String mota;
 	private KhoaHoc khoaHoc;
+	private Date thoigianbatdau;
+	private Date thoigianketthuc;
+	private Emp emp;
 	
 	@Id
 	@Column(name = "emp_khoahoc_id")
@@ -41,7 +44,7 @@ public class EmpKhoaHoc {
 		this.mota = mota;
 	}
 	
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "aht_khoahoc_id_khoahoc")
 	public KhoaHoc getKhoaHoc() {
 		return khoaHoc;
@@ -50,6 +53,30 @@ public class EmpKhoaHoc {
 		this.khoaHoc = khoaHoc;
 	}
 	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	public Date getThoigianbatdau() {
+		return thoigianbatdau;
+	}
+	public void setThoigianbatdau(Date thoigianbatdau) {
+		this.thoigianbatdau = thoigianbatdau;
+	}
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	public Date getThoigianketthuc() {
+		return thoigianketthuc;
+	}
+	public void setThoigianketthuc(Date thoigianketthuc) {
+		this.thoigianketthuc = thoigianketthuc;
+	}
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "aht_emp_id_emp")
+	public Emp getEmp() {
+		return emp;
+	}
+	public void setEmp(Emp emp) {
+		this.emp = emp;
+	}
 	public EmpKhoaHoc() {
 		
 	}

@@ -61,8 +61,6 @@ public class KhoaHocController {
 		return "add_khoahoc";
 	}
 	
-	
-	
 //	@InitBinder
 //	 public void initBinder(HttpServletRequest request, ServletRequestDataBinder binder)
 //    {

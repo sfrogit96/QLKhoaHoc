@@ -85,7 +85,7 @@ public class KhoaHoc {
 		this.ngayketthuc = ngayketthuc;
 	}
 	 
-	@OneToMany(mappedBy = "khoaHoc", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "khoaHoc")
 	public List<EmpKhoaHoc> getEmpKhoaHoc() {
 		return empKhoaHoc;
 	}
@@ -96,8 +96,5 @@ public class KhoaHoc {
 	public String toString() {
 		return "KhoaHoc [khoahoc_id=" + khoahoc_id + ", tenkhoahoc=" + tenkhoahoc + ", ngaybatdau=" + ngaybatdau
 				+ ", ngayketthuc=" + ngayketthuc + ", empKhoaHoc=" + empKhoaHoc + "]";
-	}
-	
-	 
-	
+	} 
 }

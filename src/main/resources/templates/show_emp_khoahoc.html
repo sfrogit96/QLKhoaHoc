@@ -11,25 +11,27 @@
 
 <body>
 	<div align="center">
-		<h1>SHOW MÔ TẢ</h1>
+		<h1>SHOW HỌC VIÊN</h1>
 		<br /> 
 		<table border="1" cellpadding="10">
 
 			<thead>
-				<tr>
-					<td>ID</td>
+				<tr> 
+					<td>Danh Sách Học Viên</td>
 					<td>MÔ TẢ</td>
-			 		<td>KHÓA HỌC</td>
+					<td>NGÀY BẮT ĐẦU</td>
+					<td>NGÀY KẾT THÚC</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="kh: ${listmota}">
-				<td th:text="${kh.id}"></td>
-				<td th:text="${kh.mota}"></td> 
-				  <td th:text="${kh.khoaHoc.khoahoc_id}"></td> 
-				</tr> 
+				<!-- <td th:text="${kh.id}"></td> -->
+				  <td th:text="${kh.emp.ten}"></td> 
+				  <td th:text="${kh.mota}"></td> 
+				  <td th:text="${kh.thoigianbatdau}"></td> 
+				  <td th:text="${kh.thoigianketthuc}"></td> 
+				</tr>
 			</tbody>
-
 		</table>
 	</div>
 </body>

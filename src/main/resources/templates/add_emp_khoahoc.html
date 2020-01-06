@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="htpp://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Thêm khóa học</title>
+</head>
+<body>
+	<div align="center">
+		<h1>Thêm học viên vào khóa học</h1>
+		<form action="#" th:action="@{/saveempkhoahoc}" th:object="${empKhoaHoc}" method="post">
+		<table border="1" cellpadding="10">
+		
+		<tr> 
+		<td>Khóa học ID:</td>
+		<td><input type="text" th:field="*{khoaHoc.khoahoc_id}" readonly="readonly" /></td>
+		</tr>
+		
+		<tr> 
+		<td>Học viên/Trainer ID:</td>
+		<td><input type="text" th:field="*{emp.id}" /></td>
+		</tr>
+		
+		<tr> 
+		<td>Mô tả</td>
+		<td><input type="text" th:field="*{mota}" /></td>
+		</tr>
+		<tr> 
+		<td>Thời gian đầu học:</td>
+		<td><input type="date" th:field="*{thoigianbatdau}" /></td>
+		</tr>
+		<tr> 
+		<td>Thời gian kết thúc:</td>
+		<td><input type="date" th:field="*{thoigianketthuc}" /></td>
+		</tr>
+		 
+		<tr>
+		<td colspan="2"><button type="submit">Save</button></td>
+		</tr>
+		
+		</table>
+		</form>
+	</div>
+</body>
+</html>
