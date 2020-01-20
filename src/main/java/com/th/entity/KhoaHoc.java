@@ -30,7 +30,6 @@ public class KhoaHoc {
 	private Date ngayketthuc;
 	
 	private List<EmpKhoaHoc> empKhoaHoc;
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

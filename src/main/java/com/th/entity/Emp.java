@@ -12,7 +12,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +33,8 @@ public class Emp {
 	private String diachi;
 	private String email;
 	private String sdt;
+	
+	private ChucVu chucvu;
 	
 //	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
 	private List<EmpKhoaHoc> empKhoaHoc;
@@ -105,6 +110,18 @@ public class Emp {
 	}
 	
 	
+	
+	public Emp(int id, String ten, Date ngaysinh, String gioitinh, String diachi, String email, String sdt,
+			ChucVu chucvu) {
+		this.id = id;
+		this.ten = ten;
+		this.ngaysinh = ngaysinh;
+		this.gioitinh = gioitinh;
+		this.diachi = diachi;
+		this.email = email;
+		this.sdt = sdt;
+		this.chucvu = chucvu;
+	}
 	@OneToMany(mappedBy = "emp")
 	public List<EmpKhoaHoc> getEmpKhoaHoc() {
 		return empKhoaHoc;
@@ -112,6 +129,21 @@ public class Emp {
 	public void setEmpKhoaHoc(List<EmpKhoaHoc> empKhoaHoc) {
 		this.empKhoaHoc = empKhoaHoc;
 	}
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "aht_chucvu_idchucvu")
+	
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "aht_chucvu_idchucvu")
+	public ChucVu getChucvu() {
+		return chucvu;
+	}
+	public void setChucvu(ChucVu chucvu) {
+		this.chucvu = chucvu;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "Emp [id=" + id + ", ten=" + ten + ", ngaysinh=" + ngaysinh + ", gioitinh=" + gioitinh + ", diachi="

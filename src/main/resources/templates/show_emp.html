@@ -25,6 +25,7 @@
 					<td>ĐỊA CHỈ</td>
 					<td>EMAIL</td>
 					<td>SĐT</td> 
+					<td>CHỨC VỤ</td> 
 					<td>ACTION</td> 
 				</tr>
 			</thead>
@@ -37,6 +38,7 @@
 				<td th:text="${emp.diachi}"></td>
 				<td th:text="${emp.email}"></td>
 				<td th:text="${emp.sdt}"></td>
+				<td th:text="${emp.chucvu.tenchucvu}"></td>
 				 <td>
 				 <a th:href="@{'/editemp/' + ${emp.id}}">EDIT</a>
 				 <a th:href="@{'/deleteemp/'+${emp.id}}">DELETE</a>

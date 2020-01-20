@@ -1,6 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="htpp://www.thymeLeaf.org">
 <head>
+<style>
+body {
+  /* Set "my-sec-counter" to 0 */
+  counter-reset: my-sec-counter;
+}
+
+h3::before {
+  /* Increment "my-sec-counter" by 1 */
+  counter-increment: my-sec-counter;
+  content: ""counter(my-sec-counter)"";
+}
+</style>
+
 <meta charset="ISO-8859-1">
 <title>SHOW KHÓA HỌC</title>
 
@@ -17,6 +30,7 @@
 
 			<thead>
 				<tr> 
+					<td>STT</td>
 					<td>Danh Sách Học Viên</td>
 					<td>MÔ TẢ</td>
 					<td>NGÀY BẮT ĐẦU</td>
@@ -26,6 +40,7 @@
 			<tbody>
 				<tr th:each="kh: ${listmota}">
 				<!-- <td th:text="${kh.id}"></td> -->
+				  <td><h3></h3></td>
 				  <td th:text="${kh.emp.ten}"></td> 
 				  <td th:text="${kh.mota}"></td> 
 				  <td th:text="${kh.thoigianbatdau}"></td> 
