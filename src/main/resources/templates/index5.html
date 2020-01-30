@@ -18,16 +18,26 @@
 		<table class="table table-striped">
 			<thead class="thead-dark">
 				<tr>
-					<td>USER ID</td>
+					<td>ID</td>
 					<td>TÊN KHÓA HỌC</td>
+					<td>NGÀY BẮT ĐẦU</td>
+					<td>NGÀY KẾT THÚC</td>
 					<td>ACTION</td>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="user: ${listUser}">
-				<td th:text="${user.id}"></td>
-				<td th:text="${user.email}"></td>
-				<td>  <a th:href="@{'/deleteuser/'+${user.id}}">DELETE</a>
+				<tr th:each="kh: ${listKhoaHoc}">
+				<td th:text="${kh.khoahoc_id}"></td>
+				<td th:text="${kh.tenkhoahoc}"></td>
+				<td th:text="${kh.ngaybatdau}"></td>
+				<td th:text="${kh.ngayketthuc}"></td> 
+				<td> <a th:href="@{'/editkhoahoc/' + ${kh.khoahoc_id}}">EDIT</a>
+				&nbsp;&nbsp; 
+				<a th:href="@{'/deletekhoahoc/'+${kh.khoahoc_id}}">DELETE</a>
+				&nbsp;&nbsp; 
+  				<a th:href="@{'/empkhoahoc/'+${kh.khoahoc_id}}">SHOW MÔ TẢ</a>
+  				&nbsp;&nbsp; 
+  				<a th:href="@{'/addempkhoahoc/'+${kh.khoahoc_id}}">ADD HỌC VIÊN</a>
 				</td>
 				
 				</tr> 

@@ -1,53 +1,71 @@
 <!DOCTYPE html>
-<html xmlns:th="htpp://www.thymeLeaf.org">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+</head>
 <style>
 body {
   /* Set "my-sec-counter" to 0 */
   counter-reset: my-sec-counter;
 }
 
-h3::before {
+h5::before {
   /* Increment "my-sec-counter" by 1 */
   counter-increment: my-sec-counter;
   content: ""counter(my-sec-counter)"";
 }
 </style>
+<body class="hold-transition sidebar-mini layout-fixed">
+ 
+ 
+<div th:replace="fragments/layout :: sidebar"></div>
 
-<meta charset="ISO-8859-1">
-<title>SHOW KHÓA HỌC</title>
+  <!-- Content Wrapper. Contains page content -->
+   <!-- QUAN TRONG -->
+  <div class="content-wrapper">
 
-<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- -->
-</head>
-
-
-<body>
-	<div align="center">
+    <!-- Main content -->
+    
+	 
+        <div class="table-responsive">
+		
+		 
 		<h1>SHOW HỌC VIÊN</h1>
 		<br /> 
-		<table border="1" cellpadding="10">
-
-			<thead>
+		<table class="table table-striped"> 
+			<thead class="thead-dark">
 				<tr> 
 					<td>STT</td>
 					<td>Danh Sách Học Viên</td>
 					<td>MÔ TẢ</td>
 					<td>NGÀY BẮT ĐẦU</td>
 					<td>NGÀY KẾT THÚC</td>
+					<td>Action</td>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="kh: ${listmota}">
 				<!-- <td th:text="${kh.id}"></td> -->
-				  <td><h3></h3></td>
+				  <td><h5></h5></td>
 				  <td th:text="${kh.emp.ten}"></td> 
 				  <td th:text="${kh.mota}"></td> 
 				  <td th:text="${kh.thoigianbatdau}"></td> 
 				  <td th:text="${kh.thoigianketthuc}"></td> 
+				  <td>
+				  <a th:href="@{'/editempkhoahoc/' + ${kh.id}}">EDIT</a>&nbsp;&nbsp;
+				  <a th:href="@{'/deleteempkhoahoc/'+${kh.id}}">DELETE</a>
+				  </td>
 				</tr>
 			</tbody>
 		</table>
-	</div>
+	 
+ </div>                  
+	<!-- End Main content -->
+        
+</div>
+        
+ <footer th:replace="fragments/layout :: footer"></footer>
+
 </body>
 </html>
+
+	  

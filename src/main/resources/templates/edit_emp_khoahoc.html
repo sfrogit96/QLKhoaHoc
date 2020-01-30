@@ -16,26 +16,36 @@
 	 
         <div class="table-responsive">
 		 <div align="center">
-		<h1>EDIT KHÓA HỌC</h1>
-		<form action="#" th:action="@{/save}" th:object="${kh}" method="post">
+		<h1>EDIT</h1>
+		<form action="#" th:action="@{/saveempkhoahoc}" th:object="${kh}" method="post">
 			<table class="table table-striped">
 
 				<tr>
-					<td>ID khóa học:</td>
-					<td><input  class="form-control"  type="text" th:field="*{khoahoc_id}"
+					<td>ID</td>
+					<td><input  class="form-control"  type="text" th:field="*{id}"
 						readonly="readonly" /></td>
 				</tr>
 				<tr>
-					<td>Tên khóa học:</td>
-					<td><input class="form-control" type="text" th:field="*{tenkhoahoc}" /></td>
+					<td>ID Học Viên/Trainer</td>
+					<td><input  class="form-control"  type="text" th:field="*{emp.id}"
+						readonly="readonly" /></td>
 				</tr>
 				<tr>
-					<td>Ngày bắt đầu</td>
-					<td><input class="form-control" type="date" th:field="*{ngaybatdau}" /></td>
+					<td>ID Khóa Học</td>
+					<td><input  class="form-control"  type="text" th:field="*{khoaHoc.khoahoc_id}"
+						readonly="readonly" /></td>
 				</tr>
 				<tr>
-					<td>Ngày kết thúc</td>
-					<td><input class="form-control" type="date" th:field="*{ngayketthuc}" /></td>
+					<td>Mô Tả:</td>
+					<td><input class="form-control" type="text" th:field="*{mota}" /></td>
+				</tr>
+				<tr>
+					<td>Thời gian bắt đầu:</td>
+					<td><input class="form-control" type="date" th:field="*{thoigianbatdau}" /></td>
+				</tr>
+				<tr>
+					<td>Thời gian kết thúc:</td>
+					<td><input class="form-control" type="date" th:field="*{thoigianketthuc}" /></td>
 				</tr>
 
 				<tr>

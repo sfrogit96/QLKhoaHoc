@@ -31,7 +31,7 @@ public class KhoaHocController {
 	public String viewKhoaHoc(Model model) {
 		List<KhoaHoc> listKhoaHoc = khoaHocService.listAll();
 		model.addAttribute("listKhoaHoc", listKhoaHoc);
-		return "show_khoahoc";
+		return "index5";
 	}
 	
 	@RequestMapping("/editkhoahoc/{id}")

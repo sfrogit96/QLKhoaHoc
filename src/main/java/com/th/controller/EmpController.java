@@ -69,15 +69,17 @@ public class EmpController {
 //		System.out.println("456");
 //		return "show_emp_khoahoc";
 //	}
-	@RequestMapping("/testindex5")
-	public String test() {
-		return "index5";
-	}
 	
-	@RequestMapping("/testindex4")
-	public String test2() {
-		return "index4";
-	}
+	
+//	@RequestMapping("/testindex5")
+//	public String test() {
+//		return "index5";
+//	}
+//	
+//	@RequestMapping("/testindex4")
+//	public String test2() {
+//		return "index4";
+//	}
 	
 	@RequestMapping("/emp")
 	public String viewEmp(Model model) {

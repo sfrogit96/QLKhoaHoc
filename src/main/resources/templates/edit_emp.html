@@ -1,60 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="htpp://www.thymeLeaf.org">
-<head>
-<meta charset="ISO-8859-1">
-<title>Edit Học Viên</title>
-</head>
-<body>
-	<div align="center">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+ 
+ 
+<div th:replace="fragments/layout :: sidebar"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+   <!-- QUAN TRONG -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    
+	 
+        <div class="table-responsive">
+		  <div align="center">
 		<h1>EDIT HỌC VIÊN</h1>
 		<form action="#" th:action="@{/empsave}" th:object="${emp}" method="post">
-			<table border="1" cellpadding="10">
+			<table class="table table-striped">
 
 				<tr>
 					<td>ID Học Viên:</td>
-					<td><input type="text" th:field="*{id}"
+					<td><input class="form-control"  type="text" th:field="*{id}"
 						readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Tên học viên</td>
-					<td><input type="text" th:field="*{ten}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{ten}" /></td>
 				</tr>
 
 				<tr>
 					<td>Ngày sinh</td>
-					<td><input type="date" th:field="*{ngaysinh}" /></td>
+					<td><input class="form-control"  type="date" th:field="*{ngaysinh}" /></td>
 				</tr>
  
 				<tr>
 					<td>Giới tính</td>
-					<td><input type="text" th:field="*{gioitinh}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{gioitinh}" /></td>
 				</tr>
  
 				<tr>
 					<td>Địa chỉ</td>
-					<td><input type="text" th:field="*{diachi}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{diachi}" /></td>
 				</tr>
 
 				<tr>
 					<td>Email</td>
-					<td><input type="text" th:field="*{email}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{email}" /></td>
 				</tr>
 
 				<tr>
 					<td>Số Điện Thoại</td>
-					<td><input type="text" th:field="*{sdt}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{sdt}" /></td>
 				</tr>
 				
 				<tr>
 					<td>Chức Vụ</td>
-					<td><input type="text" th:field="*{chucvu.id}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{chucvu.id}" /></td>
 				</tr>
 				
 				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
+					<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
 				</tr>
 			</table>
 		</form>
 	</div>
+		 
+		 </div>
+                   
+	<!-- End Main content -->
+        
+</div>
+
+
+        
+ <footer th:replace="fragments/layout :: footer"></footer>
+
 </body>
 </html>
+ 
+	 

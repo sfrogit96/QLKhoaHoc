@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
@@ -76,6 +77,20 @@ public class EmpKhoaHocController {
 	public String saveEmpKhoaHoc(@ModelAttribute("empKhoaHoc") EmpKhoaHoc empKhoaHoc) {
 		empKhoaHocService.save(empKhoaHoc);
 		return "redirect:/khoahoc";
+	}
+	
+	@RequestMapping(value = "/deleteempkhoahoc/{id}", method = RequestMethod.GET)
+	public String deleteEmpKhoaHoc(@PathVariable("id") int id) {
+		empKhoaHocService.delete(id);
+		return "redirect:/khoahoc";
+	}
+	
+	@RequestMapping("/editempkhoahoc/{id}")
+	public ModelAndView viewFormKhoaHoc(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_emp_khoahoc");
+		EmpKhoaHoc kh = empKhoaHocService.get(id);
+		mav.addObject("kh", kh);
+		return mav;
 	}
 	
 }

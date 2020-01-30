@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>AdminLTE 3 | Dashboard</title>
+<!-- Tell the browser to be responsive to screen width -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	th:href="@{/plugins/fontawesome-free/css/all.min.css}"
+	href="plugins/fontawesome-free/css/all.min.css">
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<!-- Tempusdominus Bbootstrap 4 -->
+<link rel="stylesheet"
+	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}"
+	href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+<!-- iCheck -->
+<link rel="stylesheet"
+	th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}"
+	href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<!-- JQVMap -->
+<link rel="stylesheet" th:href="@{/plugins/jqvmap/jqvmap.min.css}"
+	href="plugins/jqvmap/jqvmap.min.css">
+<!-- Theme style -->
+<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}"
+	href="dist/css/adminlte.min.css">
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}"
+	href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	th:href="@{/plugins/daterangepicker/daterangepicker.css}"
+	href="plugins/daterangepicker/daterangepicker.css">
+<!-- summernote -->
+<link rel="stylesheet"
+	th:href="@{/plugins/summernote/summernote-bs4.css}"
+	href="plugins/summernote/summernote-bs4.css">
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+
+
+	<div class="wrapper" th:fragment="sidebar">
+
+		<!-- Navbar -->
+		<nav
+			class="main-header navbar navbar-expand navbar-white navbar-light">
+			<!-- Left navbar links -->
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
+					href="#"><i class="fas fa-bars"></i></a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a
+					href="index3.html" class="nav-link">Home</a></li>
+				<li class="nav-item d-none d-sm-inline-block"><a href="#"
+					class="nav-link">Contact</a></li>
+			</ul>
+
+		</nav>
+		<!-- /.navbar -->
+
+		<!-- Main Sidebar Container -->
+		<aside class="main-sidebar sidebar-dark-primary elevation-4">
+			<!-- Brand Logo -->
+			<a th:href="@{/khoahoc}" class="brand-link"> 
+			<!-- <img
+				th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo"
+				class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+				<span class="brand-text font-weight-light">Hello</span> <span class="brand-text font-weight-light" sec:authentication="name"></span>
+			</a>
+
+			<!-- Sidebar -->
+			<div class="sidebar">
+
+				<!-- Sidebar Menu -->
+				<nav class="mt-2">
+					<ul class="nav nav-pills nav-sidebar flex-column"
+						data-widget="treeview" role="menu" data-accordion="false">
+						<!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+
+						<!--   <li class="nav-item">
+            <a th:href="@{/khoahoc}" class="nav-link">
+              <p>
+                Khóa Học
+              </p>
+            </a>
+          </li>
+		  <li class="nav-item">
+            <a th:href="@{/emp}" class="nav-link">
+              <p>
+                Học viên
+              </p>
+            </a>
+          </li> -->
+
+						<li class="nav-item"><a href="#" class="nav-link dropdown">
+								<p>
+									Khóa Học <i class="right fas fa-angle-left"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a th:href="@{/khoahoc}"
+									class="nav-link">
+
+										<p>Xem Khóa Học</p>
+								</a></li>
+								<li class="nav-item"><a th:href="@{/addkhoahoc}"
+									class="nav-link">
+
+										<p>Thêm Khóa Học</p>
+								</a></li>
+							</ul></li>
+
+						<li class="nav-item"><a href="#" class="nav-link dropdown">
+								<p>
+									Học Viên <i class="right fas fa-angle-left"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a th:href="@{/emp}" class="nav-link">
+
+										<p>Xem học viên</p>
+								</a></li>
+								<li class="nav-item"><a th:href="@{/addemp}"
+									class="nav-link">
+
+										<p>Thêm học viên</p>
+								</a></li>
+							</ul></li>
+						<li class="nav-item">
+							<form action="#" th:action="@{/logout}" method="POST">
+								<button type="submit" class="btn btn-secondary">Logout</button>
+							</form> <!-- <a href="#" th:action="@{/logout}" method="POST" class="nav-link">
+              <p>
+                Logout
+              </p>
+            </a> -->
+						</li>
+				</nav>
+				<!-- /.sidebar-menu -->
+			</div>
+			<!-- /.sidebar -->
+		</aside>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<!-- Main content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- /.content-wrapper -->
+
+	<footer class="main-footer" th:fragment="footer">
+		<strong>123.</strong> All rights reserved.
+		<div class="float-right d-none d-sm-inline-block">
+			<b>Version</b> 3.0.1
+		</div>
+
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark">
+			<!-- Control sidebar content goes here -->
+		</aside>
+		<!-- /.control-sidebar -->
+
+		<!-- ./wrapper -->
+
+		<!-- jQuery -->
+		<script th:src="@{/plugins/jquery/jquery.min.js}"
+			src="plugins/jquery/jquery.min.js"></script>
+		<!-- jQuery UI 1.11.4 -->
+		<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"
+			src="plugins/jquery-ui/jquery-ui.min.js"></script>
+		<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+		<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+		<!-- Bootstrap 4 -->
+		<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"
+			src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- ChartJS -->
+		<script th:src="@{/plugins/chart.js/Chart.min.js}"
+			src="plugins/chart.js/Chart.min.js"></script>
+		<!-- Sparkline -->
+		<script th:src="@{/plugins/sparklines/sparkline.js}"
+			src="plugins/sparklines/sparkline.js"></script>
+		<!-- JQVMap -->
+		<script th:src="@{/plugins/jqvmap/jquery.vmap.min.js}"
+			src="plugins/jqvmap/jquery.vmap.min.js"></script>
+		<script th:src="@{/plugins/jqvmap/maps/jquery.vmap.usa.js}"
+			src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+		<!-- jQuery Knob Chart -->
+		<script th:src="@{/plugins/jquery-knob/jquery.knob.min.js}"
+			src="plugins/jquery-knob/jquery.knob.min.js"></script>
+		<!-- daterangepicker -->
+		<script th:src="@{/plugins/moment/moment.min.js}"
+			src="plugins/moment/moment.min.js"></script>
+		<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"
+			src="plugins/daterangepicker/daterangepicker.js"></script>
+		<!-- Tempusdominus Bootstrap 4 -->
+		<script
+			th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"
+			src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+		<!-- Summernote -->
+		<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"
+			src="plugins/summernote/summernote-bs4.min.js"></script>
+		<!-- overlayScrollbars -->
+		<script
+			th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"
+			src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+		<!-- AdminLTE App -->
+		<script th:src="@{/dist/js/adminlte.js}" src="dist/js/adminlte.js"></script>
+		<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+		<script th:src="@{/dist/js/pages/dashboard.js}"
+			src="dist/js/pages/dashboard.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script th:src="@{/dist/js/demo.js}" src="dist/js/demo.js"></script>
+	</footer>
+</body>
+</html>

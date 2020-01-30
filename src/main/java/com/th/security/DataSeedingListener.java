@@ -41,7 +41,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		if (userRepository.findByEmail("admin@gmail.com") == null) {
 			User admin = new User();
 			admin.setEmail("admin@gmail.com");
-			admin.setPassword(passwordEncoder.encode("123456"));
+			admin.setPassword(passwordEncoder.encode("thien123"));
 			HashSet<Role> roles = new HashSet<>();
 			roles.add(roleRepository.findByName("ROLE_ADMIN"));
 			roles.add(roleRepository.findByName("ROLE_MEMBER"));
