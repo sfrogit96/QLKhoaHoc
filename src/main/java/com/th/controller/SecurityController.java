@@ -3,6 +3,8 @@ package com.th.controller;
 import java.util.HashSet;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.th.entity.Role;
 import com.th.entity.User;
@@ -31,9 +34,17 @@ public class SecurityController {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-	@GetMapping("/")
-	public String index() {
-		return "index";
+//	@GetMapping("/")
+//	public String index() {
+//		return "index";
+//	}
+	
+	@RequestMapping("/")
+	public String index(HttpServletRequest request) {
+		if(request.isUserInRole("ROLE_ADMIN")) {
+			return "admin";
+		} 
+		return "show_khoahoc";
 	}
 	
 	@GetMapping("/admin") 
@@ -67,6 +78,14 @@ public class SecurityController {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userService.save(user);
 		return "redirect:/admin";
+	}
+	
+	@RequestMapping("/edituser/{id}")
+	public ModelAndView editUser(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_user");
+		User user = userService.get(id);
+		mav.addObject("user", user);
+		return mav;
 	}
 	
 	

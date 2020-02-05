@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="fragments/layout2 :: head"></head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
  
  
-<div th:replace="fragments/layout :: sidebar"></div>
+<div th:replace="fragments/layout2 :: sidebar"></div>
 
   <!-- Content Wrapper. Contains page content -->
    <!-- QUAN TRONG -->
@@ -15,7 +15,7 @@
     <!-- Main content -->
      
         <div align="center">
-		<h1>THÊM USER</h1>
+		<h2>THÊM USER</h2>
 		 
 		<form action="#" th:action="@{/saveuser}" th:object="${user}"
 			method="post">
@@ -34,7 +34,6 @@
 					<td>Password</td>
 					<td><input class="form-control" type="password" th:field="*{password}" /></td>
 				</tr> 
-				
 				<tr> 
 				
 		<!-- 		 <ul class="checkbox-list">
@@ -53,25 +52,12 @@
 			</table>
 		</form>
 	</div>
- 
                    
 	<!-- End Main content -->
         
 </div>
         
- <footer th:replace="fragments/layout :: footer"></footer>
+<footer th:replace="fragments/layout2 :: footer"></footer>
 
 </body>
-</html>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
-	 
+</html>	 

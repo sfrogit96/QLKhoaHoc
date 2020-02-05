@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="fragments/layout2 :: head"></head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
  
  
-<div th:replace="fragments/layout :: sidebar"></div>
+<div th:replace="fragments/layout2 :: sidebar"></div>
 
   <!-- Content Wrapper. Contains page content -->
    <!-- QUAN TRONG -->
@@ -19,7 +19,7 @@
 			<thead class="thead-dark">
 				<tr>
 					<td>USER ID</td>
-					<td>TÊN KHÓA HỌC</td>
+					<td>USER</td>
 					<td>ACTION</td>
 				</tr>
 			</thead>
@@ -35,12 +35,8 @@
 
 		</table>
 				</div>
-                   
-	<!-- End Main content -->
-        
 </div>
-        
- <footer th:replace="fragments/layout :: footer"></footer>
+ <footer th:replace="fragments/layout2 :: footer"></footer>
 
 </body>
 </html>

@@ -33,29 +33,29 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 			roleRepository.save(new Role("ROLE_ADMIN"));
 		}
 		
-		if (roleRepository.findByName("ROLE_MEMBER") == null) {
-			roleRepository.save(new Role("ROLE_MEMBER"));
+		if (roleRepository.findByName("ROLE_MANAGER") == null) {
+			roleRepository.save(new Role("ROLE_MANAGER"));
 		}
 		
 		// Admin account
 		if (userRepository.findByEmail("admin@gmail.com") == null) {
 			User admin = new User();
 			admin.setEmail("admin@gmail.com");
-			admin.setPassword(passwordEncoder.encode("thien123"));
+			admin.setPassword(passwordEncoder.encode("123"));
 			HashSet<Role> roles = new HashSet<>();
 			roles.add(roleRepository.findByName("ROLE_ADMIN"));
-			roles.add(roleRepository.findByName("ROLE_MEMBER"));
+			roles.add(roleRepository.findByName("ROLE_MANAGER"));
 			admin.setRoles(roles);
 			userRepository.save(admin);
 		}
 		
 		// Member account
-		if (userRepository.findByEmail("member@gmail.com") == null) {
+		if (userRepository.findByEmail("manager@gmail.com") == null) {
 			User user = new User();
-			user.setEmail("member@gmail.com");
-			user.setPassword(passwordEncoder.encode("123456"));
+			user.setEmail("manager@gmail.com");
+			user.setPassword(passwordEncoder.encode("123"));
 			HashSet<Role> roles = new HashSet<>();
-			roles.add(roleRepository.findByName("ROLE_MEMBER"));
+			roles.add(roleRepository.findByName("ROLE_MANAGER"));
 			user.setRoles(roles);
 			userRepository.save(user);
 		}

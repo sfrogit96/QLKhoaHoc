@@ -4,7 +4,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:fragment="head">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>Manager | Dashboard</title>
+<title>Admin | Dashboard</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Font Awesome -->
@@ -60,7 +60,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 				<li class="nav-item"><a class="nav-link" data-widget="pushmenu"
 					href="#"><i class="fas fa-bars"></i></a></li>
 				<li class="nav-item d-none d-sm-inline-block"><a
-					th:href="@{/khoahoc}" class="nav-link">Home</a></li>
+					th:href="@{/admin}" class="nav-link">Home</a></li>
 			<!-- 	<li class="nav-item d-none d-sm-inline-block"><a href="#"
 					class="nav-link">###</a></li> -->
 			</ul>
@@ -70,7 +70,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<!-- Main Sidebar Container -->
 		<aside class="main-sidebar sidebar-dark-primary elevation-4">
 			<!-- Brand Logo -->
-			<a th:href="@{/khoahoc}" class="brand-link"> 
+			<a th:href="@{/admin}" class="brand-link"> 
 			<!-- <img
 				th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTE Logo"
 				class="brand-image img-circle elevation-3" style="opacity: .8"> -->
@@ -103,38 +103,23 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 						<li class="nav-item"><a href="#" class="nav-link dropdown">
 								<p>
-									Khóa Học <i class="right fas fa-angle-left"></i>
+									Admin <i class="right fas fa-angle-left"></i>
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/khoahoc}"
+								<li class="nav-item"><a th:href="@{/admin}"
 									class="nav-link">
 
-										<p>Xem Khóa Học</p>
+										<p>Xem Users</p>
 								</a></li>
-								<li class="nav-item"><a th:href="@{/addkhoahoc}"
+								<li class="nav-item"><a th:href="@{/adduser}"
 									class="nav-link">
 
-										<p>Thêm Khóa Học</p>
+										<p>Thêm User</p>
 								</a></li>
 							</ul></li>
 
-						<li class="nav-item"><a href="#" class="nav-link dropdown">
-								<p>
-									Học Viên <i class="right fas fa-angle-left"></i>
-								</p>
-						</a>
-							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/emp}" class="nav-link">
-
-										<p>Xem học viên</p>
-								</a></li>
-								<li class="nav-item"><a th:href="@{/addemp}"
-									class="nav-link">
-
-										<p>Thêm học viên</p>
-								</a></li>
-							</ul></li>
+						
 						<li class="nav-item">
 							<form action="#" th:action="@{/logout}" method="POST">
 								<button type="submit" class="btn btn-secondary">Logout</button>

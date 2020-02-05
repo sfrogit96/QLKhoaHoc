@@ -69,8 +69,7 @@ public class EmpController {
 //		System.out.println("456");
 //		return "show_emp_khoahoc";
 //	}
-	
-	
+
 //	@RequestMapping("/testindex5")
 //	public String test() {
 //		return "index5";

@@ -12,35 +12,34 @@
   <div class="content-wrapper">
 
     <!-- Main content -->
-    
 	 
         <div class="table-responsive">
-		 <div align="center">
-		<h2>EDIT KHÓA HỌC</h2>
-		<form action="#" th:action="@{/save}" th:object="${kh}" method="post">
+		  <div align="center">
+		<h2>EDIT USER</h2>
+		<form action="#" th:action="@{/saveuser}" th:object="${user}" method="post">
 			<table class="table table-striped">
 
 				<tr>
-					<td>ID khóa học:</td>
-					<td><input  class="form-control"  type="text" th:field="*{khoahoc_id}"
+					<td>ID User: </td>
+					<td><input class="form-control"  type="text" th:field="*{id}"
 						readonly="readonly" /></td>
 				</tr>
 				<tr>
-					<td>Tên khóa học:</td>
-					<td><input class="form-control" type="text" th:field="*{tenkhoahoc}" /></td>
-				</tr>
-				<tr>
-					<td>Ngày bắt đầu</td>
-					<td><input class="form-control" type="date" th:field="*{ngaybatdau}" /></td>
-				</tr>
-				<tr>
-					<td>Ngày kết thúc</td>
-					<td><input class="form-control" type="date" th:field="*{ngayketthuc}" /></td>
+					<td>Email: </td>
+					<td><input class="form-control"  type="text" th:field="*{email}" /></td>
 				</tr>
 
 				<tr>
-					<td><button class="btn btn-success" type="submit">SAVE</button></td>
-					<td></td>
+					<td>Password:</td>
+					<td><input class="form-control"  type="text" th:field="*{password}" /></td>
+				</tr>
+
+				<tr>
+					<td>Chức vụ:</td>
+					<td><input class="form-control"  type="text" th:field="*{roles}" /></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
 				</tr>
 			</table>
 		</form>
@@ -59,3 +58,4 @@
 </body>
 </html>
  
+	 

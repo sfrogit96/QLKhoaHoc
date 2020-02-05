@@ -34,9 +34,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/register").permitAll()
-                .antMatchers("/").hasRole("MEMBER")
-                .antMatchers("/emp/**").hasRole("MEMBER")
-                .antMatchers("/khoahoc/**").hasRole("MEMBER")
+                .antMatchers("/").hasRole("MANAGER")
+                .antMatchers("/emp/**").hasRole("MANAGER")
+                .antMatchers("/khoahoc/**").hasRole("MANAGER")
                 .antMatchers("/testphanquyen/**").hasRole("ADMIN")
                 .antMatchers("/admin").hasRole("ADMIN")
                 .and()
@@ -51,8 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     			.accessDeniedPage("/403")
     			.and()
     			.logout()
-    			.logoutUrl("/")
-    			.logoutSuccessUrl("/");
+    			.logoutUrl("/logout")
+    			.logoutSuccessUrl("/loginPage?logout");
     			
     }	
 }

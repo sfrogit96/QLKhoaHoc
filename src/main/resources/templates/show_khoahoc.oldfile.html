@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<html xmlns:th="htpp://www.thymeLeaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>SHOW KHÓA HỌC</title>
 
-<body class="hold-transition sidebar-mini layout-fixed">
- 
- 
-<div th:replace="fragments/layout :: sidebar"></div>
+<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ -->
+</head>
 
-  <!-- Content Wrapper. Contains page content -->
-   <!-- QUAN TRONG -->
-  <div class="content-wrapper">
 
-    <!-- Main content -->
-    
-	 
-        <div class="table-responsive">
-		<table class="table table-striped">
-			<thead class="thead-dark">
+<body>
+	<div align="center">
+		<h1>SHOW KHÓA HỌC</h1>
+		<br />
+		<a href="addkhoahoc">Tạo mới khóa học</a>
+		<table border="1" cellpadding="10">
+			<thead>
 				<tr>
 					<td>ID</td>
 					<td>TÊN KHÓA HỌC</td>
@@ -44,13 +43,6 @@
 			</tbody>
 
 		</table>
-				</div>
-                   
-	<!-- End Main content -->
-        
-</div>
-        
- <footer th:replace="fragments/layout :: footer"></footer>
-
+	</div>
 </body>
 </html>
