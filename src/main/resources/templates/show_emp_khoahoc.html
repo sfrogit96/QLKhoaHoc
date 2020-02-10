@@ -51,8 +51,8 @@ h5::before {
 				  <td th:text="${kh.thoigianbatdau}"></td> 
 				  <td th:text="${kh.thoigianketthuc}"></td> 
 				  <td>
-				  <a th:href="@{'/editempkhoahoc/' + ${kh.id}}">EDIT</a>&nbsp;&nbsp;
-				  <a th:href="@{'/deleteempkhoahoc/'+${kh.id}}">DELETE</a>
+				  <a th:href="@{'/editempkhoahoc/' + ${kh.id}}"><i class="fas fa-pencil-alt"></i></a>&nbsp;&nbsp;
+				  <a th:href="@{'/deleteempkhoahoc/'+${kh.id}}"><i class="fa fa-trash"></i></a>
 				  </td>
 				</tr>
 			</tbody>

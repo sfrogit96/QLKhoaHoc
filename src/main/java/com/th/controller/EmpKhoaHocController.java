@@ -1,6 +1,13 @@
 package com.th.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +35,9 @@ public class EmpKhoaHocController {
 	
 	@Autowired
 	EmpKhoaHocService empKhoaHocService;
+	
+	@Autowired
+	ServletContext context;
 	
 	@RequestMapping("/empkhoahoc/{id}")
 	public String viewKhoaHoc(@PathVariable(name = "id") int id, Model model) {
@@ -64,6 +74,65 @@ public class EmpKhoaHocController {
 		System.out.println("End");
 		return "show_emp_khoahoc";
 	}
+	
+	
+	@RequestMapping("/reportempkhoahoc/{id}")
+	public void createPdf(@PathVariable(name = "id") int id, HttpServletRequest request, HttpServletResponse response) {
+		 
+
+		KhoaHoc kh = khoaHocService.get(id); 
+		List<EmpKhoaHoc> khoahoc = kh.getEmpKhoaHoc();
+		boolean isFlag = khoaHocService.createPdf(khoahoc, context, request, response);
+		
+		if(isFlag) {
+			String fullPath = request.getServletContext().getRealPath("/resources/reports/"+"employees"+".pdf");
+			filedownload(fullPath, response, "employees.pdf");
+		} 
+	}
+	
+	@RequestMapping(value="/reportempkhoahoc2/{id}")
+	public void createExcel(@PathVariable(name = "id") int id, HttpServletRequest request, HttpServletResponse response) {
+		KhoaHoc kh = khoaHocService.get(id);
+		List<EmpKhoaHoc> khoahoc = kh.getEmpKhoaHoc();
+		boolean isFlag = khoaHocService.createExcel(khoahoc, context, request, response);
+		
+		if(isFlag) {
+			String fullPath = request.getServletContext().getRealPath("/resources/reports/"+"employees"+".xls");
+			filedownload(fullPath, response, "employees.xls");
+		}
+		
+		
+	}
+	
+	
+	private void filedownload(String fullPath, HttpServletResponse response, String fileName) {
+		File file = new File(fullPath);
+		final int BUFFER_SIZE = 8192;
+		if(file.exists()) {
+			try {
+				FileInputStream inputStream = new FileInputStream(file);
+				String mimeType = context.getMimeType(fullPath);
+				response.setContentType(mimeType);
+				response.setHeader("content-disposition", "attachment; filename="+fileName);
+				response.setContentType("application/pdf; charset=UTF-8");
+				OutputStream outputStream = response.getOutputStream();
+				byte[] buffer = new byte[BUFFER_SIZE];
+				int bytesRead = -1; 
+				while((bytesRead = inputStream.read(buffer))!=-1) {
+					outputStream.write(buffer, 0, bytesRead);
+				}
+				inputStream.close();
+				outputStream.close();
+				file.delete();
+				
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}
+		}
+	}
+
+
 	@RequestMapping("addempkhoahoc/{id}")
 	public String addEmpKhoaHoc (@PathVariable(name = "id") int id, Model model) {
 		EmpKhoaHoc empKhoaHoc = new EmpKhoaHoc();

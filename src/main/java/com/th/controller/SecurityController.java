@@ -42,9 +42,9 @@ public class SecurityController {
 	@RequestMapping("/")
 	public String index(HttpServletRequest request) {
 		if(request.isUserInRole("ROLE_ADMIN")) {
-			return "admin";
+			return "/fragments/layout2";
 		} 
-		return "show_khoahoc";
+		return "/fragments/layout";
 	}
 	
 	@GetMapping("/admin") 

@@ -42,8 +42,8 @@
 				<td th:text="${emp.sdt}"></td>
 				<td th:text="${emp.chucvu.tenchucvu}"></td>
 				 <td>
-				 <a th:href="@{'/editemp/' + ${emp.id}}">EDIT</a>
-				 <a th:href="@{'/deleteemp/'+${emp.id}}">DELETE</a>
+				 <a th:href="@{'/editemp/' + ${emp.id}}"><i class="fas fa-pencil-alt"></i></a>
+				 &nbsp;&nbsp;<a th:href="@{'/deleteemp/'+${emp.id}}"><i class="fa fa-trash"></i></a>
 				 </td>
 				</tr> 
 			</tbody>

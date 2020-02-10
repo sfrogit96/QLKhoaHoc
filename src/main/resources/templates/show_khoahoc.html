@@ -31,13 +31,18 @@
 				<td th:text="${kh.tenkhoahoc}"></td>
 				<td th:text="${kh.ngaybatdau}"></td>
 				<td th:text="${kh.ngayketthuc}"></td> 
-				<td> <a th:href="@{'/editkhoahoc/' + ${kh.khoahoc_id}}">EDIT</a>
+				<td> <a th:href="@{'/addempkhoahoc/'+${kh.khoahoc_id}}"><i class="fa fa-plus"></i></a>
 				&nbsp;&nbsp; 
-				<a th:href="@{'/deletekhoahoc/'+${kh.khoahoc_id}}">DELETE</a>
+				<a th:href="@{'/editkhoahoc/' + ${kh.khoahoc_id}}"><i class="fas fa-pencil-alt"></i>	</a>
 				&nbsp;&nbsp; 
-  				<a th:href="@{'/empkhoahoc/'+${kh.khoahoc_id}}">SHOW MÔ TẢ</a>
+				<a th:href="@{'/deletekhoahoc/'+${kh.khoahoc_id}}"><i class="fa fa-trash"></i></a>
+				&nbsp;&nbsp;  
+  				<a th:href="@{'/empkhoahoc/'+${kh.khoahoc_id}}"><i class="fa fa-table"></i></a>
   				&nbsp;&nbsp; 
-  				<a th:href="@{'/addempkhoahoc/'+${kh.khoahoc_id}}">ADD HỌC VIÊN</a>
+  				<a th:href="@{'/reportempkhoahoc/'+${kh.khoahoc_id}}"><i class="fas fa-download"></i></a>
+  				&nbsp;&nbsp; 
+  				<a th:href="@{'/reportempkhoahoc2/'+${kh.khoahoc_id}}"><i class="fas fa-download"></i></a>
+  				
 				</td>
 				
 				</tr> 
