@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="fragments/layout :: head">
+</head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
  
@@ -19,22 +20,30 @@
 		<form action="#" th:action="@{/save}" th:object="${attributekhoahoc}" method="post">
 		<table class="table table-striped">
 		<tr> 
-		<td>Tên khóa học:</td>
-		<td><input class="form-control" type="text" th:field="*{tenkhoahoc}" /></td>
+		<td width="400">Tên khóa học:</td>
+		<td><input class="form-control" type="text" th:field="*{tenkhoahoc}" />
+		<span class="text-danger" th:if="${#fields.hasErrors('tenkhoahoc')}" th:errors="*{tenkhoahoc}"></span></td>
 		</tr>
 		<tr> 
 		<td>Ngày bắt đầu:</td>
-		<td><input class="form-control" type="date" th:field="*{ngaybatdau}" /></td>
+		<td><input class="form-control" type="date" th:field="*{ngaybatdau}" />
+		<span class="text-danger" th:if="${#fields.hasErrors('ngaybatdau')}" th:errors="*{ngaybatdau}"></span>
+		<div th:if="${dateError}!=null"><br/><span th:utext="${dateError}" class="text-danger"></span></div>
+                            </td>
+                            
 		</tr>
-		<tr> 
-		<td>Ngày kết thúc:</td>
-		<td><input class="form-control" type="date" th:field="*{ngayketthuc}" /></td>
+  		
+<!--  		<div th:if="${dateError}!=null">
+		<br/><p th:utext="${dateError}" class="text-danger"></p> </div>  -->
+		<tr>
+		<td>Ngày kết thúc: </td>
+		<td><input class="form-control" type="date" th:field="*{ngayketthuc}" />
+		<span class="text-danger" th:if="${#fields.hasErrors('ngayketthuc')}" th:errors="*{ngayketthuc}"></span>
+		</td>
 		</tr>
-		
 		<tr>
 		<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
 		</tr>
-		
 		</table>
 		</form>
 	</div>

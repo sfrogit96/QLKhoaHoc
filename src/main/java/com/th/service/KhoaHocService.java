@@ -62,7 +62,7 @@ public class KhoaHocService {
 
 	
 	
-	public boolean createPdf(List<EmpKhoaHoc> khoahoc, ServletContext context, HttpServletRequest request,
+	public boolean createPdf(List<EmpKhoaHoc> khoahoc, KhoaHoc kH, ServletContext context, HttpServletRequest request,
 			HttpServletResponse response) {
 
 		Document document = new Document(PageSize.A4, 15, 15, 45, 30);
@@ -86,7 +86,7 @@ public class KhoaHocService {
 			
 //			Font mainFont = FontFactory.getFont("Arial", 10, BaseColor.BLACK);
 			
-			Paragraph paragraph = new Paragraph("Danh sách học viên khóa học", mainFont);
+			Paragraph paragraph = new Paragraph("Danh sách học viên khóa học "+kH.getTenkhoahoc(), mainFont);
 			paragraph.setAlignment(Element.ALIGN_CENTER);
 			paragraph.setIndentationLeft(50);
 			paragraph.setIndentationRight(50);

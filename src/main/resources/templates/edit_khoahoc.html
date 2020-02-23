@@ -1,61 +1,86 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="fragments/layout :: head">
+</head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
- 
- 
-<div th:replace="fragments/layout :: sidebar"></div>
 
-  <!-- Content Wrapper. Contains page content -->
-   <!-- QUAN TRONG -->
-  <div class="content-wrapper">
 
-    <!-- Main content -->
-    
-	 
-        <div class="table-responsive">
-		 <div align="center">
-		<h2>EDIT KHÓA HỌC</h2>
-		<form action="#" th:action="@{/save}" th:object="${kh}" method="post">
-			<table class="table table-striped">
+	<div th:replace="fragments/layout :: sidebar"></div>
 
-				<tr>
-					<td>ID khóa học:</td>
-					<td><input  class="form-control"  type="text" th:field="*{khoahoc_id}"
-						readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Tên khóa học:</td>
-					<td><input class="form-control" type="text" th:field="*{tenkhoahoc}" /></td>
-				</tr>
-				<tr>
-					<td>Ngày bắt đầu</td>
-					<td><input class="form-control" type="date" th:field="*{ngaybatdau}" /></td>
-				</tr>
-				<tr>
-					<td>Ngày kết thúc</td>
-					<td><input class="form-control" type="date" th:field="*{ngayketthuc}" /></td>
-				</tr>
+	<!-- Content Wrapper. Contains page content -->
+	<!-- QUAN TRONG -->
+	<div class="content-wrapper">
 
-				<tr>
-					<td><button class="btn btn-success" type="submit">SAVE</button></td>
-					<td></td>
-				</tr>
-			</table>
-		</form>
+		<!-- Main content -->
+
+
+		<div align="center">
+			<h2>EDIT KHÓA HỌC</h2>
+			<form action="#" th:action="@{/save2}" th:object="${attributekhoahoc}"
+				method="post">
+				<table class="table table-striped">
+					<tr>
+						<td width="400">ID khóa học:</td>
+						<td><input class="form-control" type="text"
+							th:field="*{khoahoc_id}" readonly="readonly" /></td>
+					</tr>
+
+					<tr>
+						<td width="400">Tên khóa học:</td>
+						<td><input class="form-control" type="text"
+							th:field="*{tenkhoahoc}" /> <span class="text-danger"
+							th:if="${#fields.hasErrors('tenkhoahoc')}"
+							th:errors="*{tenkhoahoc}"></span></td>
+					</tr>
+					<tr>
+						<td>Ngày bắt đầu:</td>
+						<td><input class="form-control" type="date"
+							th:field="*{ngaybatdau}" /> <span class="text-danger"
+							th:if="${#fields.hasErrors('ngaybatdau')}"
+							th:errors="*{ngaybatdau}"></span>
+							<div th:if="${dateError}!=null">
+								<br />
+								<span th:utext="${dateError}" class="text-danger"></span>
+							</div></td>
+
+					</tr>
+
+					<!--  		<div th:if="${dateError}!=null">
+		<br/><p th:utext="${dateError}" class="text-danger"></p> </div>  -->
+					<tr>
+						<td>Ngày kết thúc:</td>
+						<td><input class="form-control" type="date"
+							th:field="*{ngayketthuc}" /> <span class="text-danger"
+							th:if="${#fields.hasErrors('ngayketthuc')}"
+							th:errors="*{ngayketthuc}"></span></td>
+					</tr>
+					<tr>
+						<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+
+		<!-- End Main content -->
+
 	</div>
-		 
-		 </div>
-                   
-	<!-- End Main content -->
-        
-</div>
 
-
-        
- <footer th:replace="fragments/layout :: footer"></footer>
+	<footer th:replace="fragments/layout :: footer"></footer>
 
 </body>
 </html>
- 
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,34 +13,64 @@
 
     <!-- Main content -->
     
-	 
         <div align="center">
-		<h2>THÊM HỌC VIÊN VÀO KHÓA HỌC</h2>
-		<form action="#" th:action="@{/saveempkhoahoc}" th:object="${empKhoaHoc}" method="post">
+		<h2>HỌC VIÊN & KHÓA HỌC</h2>
+		<form action="#" th:object="${empKhoaHoc}" th:action="@{'/saveempkhoahoc/'+*{khoaHoc.khoahoc_id}}"  method="post">
 		<table class="table table-striped">
-		
+		<tr>
+					<td>ID</td>
+					<td><input  class="form-control"  type="text" th:field="*{id}"
+						readonly="readonly" /></td>
+				</tr>
 		<tr> 
-		<td>Khóa học ID:</td>
+		<td width="400">Khóa học ID:</td>
 		<td><input class="form-control" type="text" th:field="*{khoaHoc.khoahoc_id}" readonly="readonly" /></td>
-		</tr>
-		
-		<tr> 
+		</tr> 
+<!--  		<tr> 
 		<td>Học viên/Trainer ID:</td>
 		<td><input class="form-control" type="text" th:field="*{emp.id}" /></td>
+		</tr> -->
+		
+		<tr>
+		<td>Học Viên/Trainer</td>
+		<td> 
+		<select class="form-control" th:field="*{emp.id}">
+		<option th:each="event: ${empList}" th:value="${event.id}" th:text="${event.ten}+'  ID = '+${event.id}"></option>
+		</select>
+		<div th:if="${errorEmp}!=null"><br/><span th:utext="${errorEmp}" class="text-danger"></span></div>
+		</td>
 		</tr>
 		
-		<tr> 
+		
+<!-- 	<tr> 
+		<td>Học viên/Trainer ID:</td>
+		<td><select class="form-control" th:field="*{emp.id}">
+    <option th:value="'1'" th:text="Trainer"></option>
+    <option th:value="'2'" th:text="HọcViên"></option>
+</select></td>
+		</tr> -->
+ 
+		<tr>
 		<td>Mô tả</td>
 		<td><input class="form-control" type="text" th:field="*{mota}" /></td>
 		</tr>
-		<tr> 
+		<tr>
 		<td>Thời gian đầu học:</td>
-		<td><input class="form-control" type="date" th:field="*{thoigianbatdau}" /></td>
+		<td><input class="form-control" type="date" th:field="*{thoigianbatdau}" />
+		<span class="text-danger" th:if="${#fields.hasErrors('thoigianbatdau')}" th:errors="*{thoigianbatdau}">
+                            Thời Gian bắt đầu Error</span>
+                            </td>
 		</tr>
-		<tr> 
+		<tr th:if="${dateError1}!=null">
+		<td></td><td><span th:utext="${dateError1}" class="text-danger"></span></td></tr> 
+		<tr>
 		<td>Thời gian kết thúc:</td>
-		<td><input class="form-control" type="date" th:field="*{thoigianketthuc}" /></td>
+		<td><input class="form-control" type="date" th:field="*{thoigianketthuc}" />
+		<span class="text-danger" th:if="${#fields.hasErrors('thoigianketthuc')}" th:errors="*{thoigianketthuc}">
+                            Thời gian kết thúc Error</span></td>
 		</tr>
+		<tr th:if="${dateError2}!=null">
+		<td></td><td><span th:utext="${dateError2}" class="text-danger"></span></td></tr> 
 		 
 		<tr>
 		<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
@@ -49,9 +79,7 @@
 		</table>
 		</form>
 	</div>
- 
-                   
-	<!-- End Main content -->
+
         
 </div>
         

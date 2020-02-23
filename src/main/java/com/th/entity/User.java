@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
  
 @Entity
 @Table(name = "aht_user")
@@ -25,6 +27,8 @@ public class User implements Serializable {
 	private int id;
 	
 	@Column(name = "email", nullable = false, unique = true)
+	@NotEmpty(message = "Email không được để trống!")
+	@Email(message = "Nhập sai định dạng email!")
 	private String email;
 	
 	@Column(name = "password", nullable = false)

@@ -4,12 +4,17 @@ import java.util.HashSet;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.sound.midi.Soundbank;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +39,11 @@ public class SecurityController {
 	@Autowired
 	private RoleRepository roleRepository;
 	
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
+	}
 //	@GetMapping("/")
 //	public String index() {
 //		return "index";
@@ -43,7 +53,7 @@ public class SecurityController {
 	public String index(HttpServletRequest request) {
 		if(request.isUserInRole("ROLE_ADMIN")) {
 			return "/fragments/layout2";
-		} 
+		}
 		return "/fragments/layout";
 	}
 	
@@ -74,7 +84,23 @@ public class SecurityController {
 	}
 	
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute("user") User user) {
+	public String saveUser(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
+
+		
+			for(Role role: user.getRoles()) {
+//				if(bindingResult.hasErrors()) {
+//
+//				}
+				if (role == null)
+				{
+					System.out.println("test");
+					User user2 = new User();
+					model.addAttribute("user", user2);
+					model.addAttribute("userError","Nhập sai vai trò!");
+					return "add_user";
+				}
+		}
+		
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userService.save(user);
 		return "redirect:/admin";
@@ -84,20 +110,21 @@ public class SecurityController {
 	public ModelAndView editUser(@PathVariable(name = "id") int id) {
 		ModelAndView mav = new ModelAndView("edit_user");
 		User user = userService.get(id);
+		user.setPassword("");
 		mav.addObject("user", user);
 		return mav;
 	}
-	
 	
 	@GetMapping("/403")
 	public String accessDenied() {
 		return "403";
 	}
 	
-	@GetMapping("/loginPage") 
+	@GetMapping("/loginPage")
 	public String getLogin() {
 		return "loginPage";
 	}
+	
 	@GetMapping("/testphanquyen")
 	@ResponseBody
 	public String testPhanQuyen() {

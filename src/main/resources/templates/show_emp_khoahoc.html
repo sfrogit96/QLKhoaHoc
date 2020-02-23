@@ -29,17 +29,17 @@ h5::before {
         <div class="table-responsive">
 		
 		  <div align="center">
-		<h2>SHOW HỌC VIÊN</h2></div>
-		<br /> 
-		<table class="table table-striped"> 
+		<h2>SHOW HỌC VIÊN</h2></div> 
+		<table class="table table-striped table-bordered mydatatable"> 
 			<thead class="thead-dark">
 				<tr> 
-					<td>STT</td>
-					<td>Danh Sách Học Viên</td>
-					<td>MÔ TẢ</td>
-					<td>NGÀY BẮT ĐẦU</td>
-					<td>NGÀY KẾT THÚC</td>
-					<td>Action</td>
+					<th class="h6">STT</th>
+					<th class="h6">TÊN HỌC VIÊN</th>
+					<th class="h6">CHỨC VỤ</th>
+					<th class="h6">MÔ TẢ</th>
+					<th class="h6">NGÀY BẮT ĐẦU</th>
+					<th class="h6">NGÀY KẾT THÚC</th>
+					<th class="h6">Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -47,6 +47,7 @@ h5::before {
 				<!-- <td th:text="${kh.id}"></td> -->
 				  <td><h5></h5></td>
 				  <td th:text="${kh.emp.ten}"></td> 
+				  <td th:text="${kh.emp.chucvu.tenchucvu}"></td> 
 				  <td th:text="${kh.mota}"></td> 
 				  <td th:text="${kh.thoigianbatdau}"></td> 
 				  <td th:text="${kh.thoigianketthuc}"></td> 
@@ -62,10 +63,20 @@ h5::before {
 	<!-- End Main content -->
         
 </div>
-        
- <footer th:replace="fragments/layout :: footer"></footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+<script>
+$('.mydatatable').DataTable();
+</script>
+
 
 </body>
+ 
+ <footer th:replace="fragments/layout :: footer"></footer>
 </html>
 
 	  

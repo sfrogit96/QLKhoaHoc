@@ -3,69 +3,93 @@
 <head th:replace="fragments/layout :: head"></head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
- 
- 
-<div th:replace="fragments/layout :: sidebar"></div>
 
-  <!-- Content Wrapper. Contains page content -->
-   <!-- QUAN TRONG -->
-  <div class="content-wrapper">
 
-    <!-- Main content -->
-    
-	 
-        <div class="table-responsive">
-		 <div align="center">
-		<h2>EDIT</h2>
-		<form action="#" th:action="@{/saveempkhoahoc}" th:object="${kh}" method="post">
-			<table class="table table-striped">
+	<div th:replace="fragments/layout :: sidebar"></div>
 
-				<tr>
-					<td>ID</td>
-					<td><input  class="form-control"  type="text" th:field="*{id}"
-						readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>ID Học Viên/Trainer</td>
-					<td><input  class="form-control"  type="text" th:field="*{emp.id}"
-						readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>ID Khóa Học</td>
-					<td><input  class="form-control"  type="text" th:field="*{khoaHoc.khoahoc_id}"
-						readonly="readonly" /></td>
-				</tr>
-				<tr>
-					<td>Mô Tả:</td>
-					<td><input class="form-control" type="text" th:field="*{mota}" /></td>
-				</tr>
-				<tr>
-					<td>Thời gian bắt đầu:</td>
-					<td><input class="form-control" type="date" th:field="*{thoigianbatdau}" /></td>
-				</tr>
-				<tr>
-					<td>Thời gian kết thúc:</td>
-					<td><input class="form-control" type="date" th:field="*{thoigianketthuc}" /></td>
-				</tr>
+	<!-- Content Wrapper. Contains page content -->
+	<!-- QUAN TRONG -->
+	<div class="content-wrapper">
 
-				<tr>
-					<td><button class="btn btn-success" type="submit">SAVE</button></td>
-					<td></td>
-				</tr>
-			</table>
-		</form>
+		<!-- Main content -->
+
+
+		<div class="table-responsive">
+			<div align="center">
+				<h2>HỌC VIÊN & KHÓA HỌC</h2>
+				<form action="#" th:object="${kh}"
+					th:action="@{'/saveempkhoahoc/'+*{khoaHoc.khoahoc_id}}"
+					method="post">
+					<table class="table table-striped">
+
+						<tr>
+							<td>ID</td>
+							<td><input class="form-control" type="text" th:field="*{id}"
+								readonly="readonly" /></td>
+						</tr>
+						<tr>
+							<td>ID Học Viên/Trainer</td>
+							<td><select class="form-control" th:field="*{emp.id}">
+									<option th:each="event: ${empList}" th:value="${event.id}"
+										th:text="${event.ten}+'  ID = '+${event.id}"></option>
+							</select>
+								<div th:if="${errorEmp}!=null">
+									<br />
+									<span th:utext="${errorEmp}" class="text-danger"></span>
+								</div></td>
+						</tr>
+						<tr>
+							<td>ID Khóa Học</td>
+							<td><input class="form-control" type="text"
+								th:field="*{khoaHoc.khoahoc_id}" readonly="readonly" /></td>
+						</tr>
+						<tr>
+							<td>Mô Tả:</td>
+							<td><input class="form-control" type="text"
+								th:field="*{mota}" /></td>
+						</tr>
+						<tr>
+							<td>Thời gian bắt đầu:</td>
+							<td><input class="form-control" type="date"
+								th:field="*{thoigianbatdau}" /> <span class="text-danger"
+								th:if="${#fields.hasErrors('thoigianbatdau')}"
+								th:errors="*{thoigianbatdau}"> Thời Gian bắt đầu Error</span></td>
+						</tr>
+						<tr th:if="${dateError1}!=null">
+							<td></td>
+							<td><span th:utext="${dateError1}" class="text-danger"></span></td>
+						</tr>
+						<tr>
+						<tr>
+							<td>Thời gian kết thúc:</td>
+							<td><input class="form-control" type="date"
+								th:field="*{thoigianketthuc}" /> <span class="text-danger"
+								th:if="${#fields.hasErrors('thoigianketthuc')}"
+								th:errors="*{thoigianketthuc}"> Thời gian kết thúc Error</span></td>
+						</tr>
+
+						<tr th:if="${dateError2}!=null">
+							<td></td>
+							<td><span th:utext="${dateError2}" class="text-danger"></span></td>
+						</tr>
+
+
+						<tr>
+							<td><button class="btn btn-success" type="submit">SAVE</button></td>
+							<td></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+
+		</div>
+
+		<!-- End Main content -->
+
 	</div>
-		 
-		 </div>
-                   
-	<!-- End Main content -->
-        
-</div>
 
 
-        
- <footer th:replace="fragments/layout :: footer"></footer>
+	<footer th:replace="fragments/layout :: footer"></footer>
 
 </body>
 </html>
- 

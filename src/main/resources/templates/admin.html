@@ -27,7 +27,9 @@
 				<tr th:each="user: ${listUser}">
 				<td th:text="${user.id}"></td>
 				<td th:text="${user.email}"></td>
-				<td>  <a th:href="@{'/deleteuser/'+${user.id}}"><i class="fa fa-trash"></i></a>
+				<td>  <a th:href="@{'/edituser/'+${user.id}}"><i class="fas fa-pencil-alt"></i></a>&nbsp;&nbsp;
+				<a th:href="@{'/deleteuser/'+${user.id}}"><i class="fa fa-trash"></i></a>
+				
 				</td>
 				
 				</tr> 

@@ -19,21 +19,31 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
+ 
 
 @Entity
 @Table(name = "aht_emp")
 public class Emp {
 
 	private int id;
+	@NotEmpty(message = "Tên học viên không được để trống!")
 	private String ten;
+	@NotNull(message = "Ngày sinh không được để trống!")
 	private Date ngaysinh;
 	private String gioitinh;
 	private String diachi;
+	@NotEmpty(message = "Email không được để trống!")
+	@Email(message = "Email sai cú pháp!")
 	private String email;
+	@Pattern(regexp = "(\\+84|0)[0-9]{9}", message = "Không đúng cú pháp số điện thoại! +84/0 + 9 numbers")
+	@NotEmpty(message = "Số điện thoại không được để trống!")
 	private String sdt;
-	
 	private ChucVu chucvu;
 	
 //	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
@@ -142,7 +152,6 @@ public class Emp {
 	public void setChucvu(ChucVu chucvu) {
 		this.chucvu = chucvu;
 	}
-	
 	
 	@Override
 	public String toString() {

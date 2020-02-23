@@ -16,17 +16,24 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+ 
 
 @Entity
 @Table(name = "aht_khoahoc")
 public class KhoaHoc {
 	
 	private int khoahoc_id;
+	
+	@NotEmpty(message = "Tên khóa học không được để trống!")
 	private String tenkhoahoc;
+	
+	@NotNull(message = "Ngày bắt đầu không được để trống!")
 	private Date ngaybatdau;
+	@NotNull(message = "Ngày kết thúc không được để trống!")
 	private Date ngayketthuc;
 	
 	private List<EmpKhoaHoc> empKhoaHoc;
@@ -40,7 +47,7 @@ public class KhoaHoc {
 		this.khoahoc_id = khoahoc_id;
 	}
 	
-	@NotBlank
+
 	public String getTenkhoahoc() {
 		return tenkhoahoc;
 	}

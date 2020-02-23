@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -24,7 +25,9 @@ public class EmpKhoaHoc {
 	private int id; 
 	private String mota;
 	private KhoaHoc khoaHoc;
+	@NotNull(message = "Thời gian bắt đầu học không được bỏ trống!")
 	private Date thoigianbatdau;
+	@NotNull(message = "Thời gian kết thúc học không được bỏ trống!")
 	private Date thoigianketthuc;
 	private Emp emp;
 	
@@ -78,7 +81,6 @@ public class EmpKhoaHoc {
 		this.emp = emp;
 	}
 	public EmpKhoaHoc() {
-		
 	}
 	public EmpKhoaHoc(int id, String mota) {
 		super();
@@ -91,7 +93,6 @@ public class EmpKhoaHoc {
 		this.mota = mota;
 		this.khoaHoc = khoaHoc;
 	}
-	
 	
 	public EmpKhoaHoc(String mota, KhoaHoc khoaHoc) {
 		super();
