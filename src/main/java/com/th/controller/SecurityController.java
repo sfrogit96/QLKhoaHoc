@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.sound.midi.Soundbank;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -39,7 +40,6 @@ public class SecurityController {
 	@Autowired
 	private RoleRepository roleRepository;
 	
-
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
@@ -76,31 +76,42 @@ public class SecurityController {
 //		HashSet<Role> roles = new HashSet<>();
 //		roles.add(roleRepository.findByName("ROLE_ADMIN"));
 //		roles.add(roleRepository.findByName("ROLE_MEMBER"));
-////		user.setRoles(roles);
+////	user.setRoles(roles);
 //		model.addAttribute("roles", roles);
 		model.addAttribute("user", user);
-	
 		return "add_user";
 	}
 	
 	@RequestMapping(value = "/saveuser", method = RequestMethod.POST)
-	public String saveUser(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
-
+	public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult, Model model) {
+		
+		
+		if(bindingResult.hasErrors()) {
+			
+			System.out.println("Check 2");
+			model.addAttribute("user", user);
+			if (user.getId() != 0) {
+				return "edit_user";
+			}
+			return "add_user";
+		}
 		
 			for(Role role: user.getRoles()) {
-//				if(bindingResult.hasErrors()) {
-//
-//				}
+
 				if (role == null)
 				{
-					System.out.println("test");
+					System.out.println("Check 1");
 					User user2 = new User();
 					model.addAttribute("user", user2);
 					model.addAttribute("userError","Nhập sai vai trò!");
+					if (user.getId() != 0) {
+						return "edit_user";
+					}
 					return "add_user";
 				}
+
 		}
-		
+			
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		userService.save(user);
 		return "redirect:/admin";

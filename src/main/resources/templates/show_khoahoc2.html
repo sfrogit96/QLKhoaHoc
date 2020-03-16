@@ -21,22 +21,18 @@
 				<tr>
 					<th class="h6">ID</th>
 					<th class="h6">TÊN KHÓA HỌC</th>
-					<th class="h6">STATUS</th>
 					<th class="h6">NGÀY BẮT ĐẦU</th>
 					<th class="h6">NGÀY KẾT THÚC</th>
 					<th class="h6">ACTION </th>
-				 
 					<!-- <span th:utext="${test}"></span> -->
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="kh: ${listKhoaHoc}">
-				<td th:text="${kh.khoahoc_id}" th:class="(${kh.status}?'text-dark': 'text-danger')"></td>
-				<td th:text="${kh.tenkhoahoc}" th:class="(${kh.status}?'text-dark': 'text-danger')"></td>
-				<td> <a th:href="@{'/changestatus/'+${kh.khoahoc_id}}"><i class="fas fa-exchange-alt	"></i></a> &nbsp;&nbsp; 
-				<span th:text="(${kh.status}?'Actived': 'Disabled')" th:class="(${kh.status}?'text-dark': 'text-danger')"></span></td>
-				<td th:text="${kh.ngaybatdau}" th:class="(${kh.status}?'text-dark': 'text-danger')"></td>
-				<td th:text="${kh.ngayketthuc}" th:class="(${kh.status}?'text-dark': 'text-danger')"></td>
+				<tr th:each="kh: ${listKhoaHoc}"  th:if="${kh.status}==true" >
+				<td th:text="${kh.khoahoc_id}" ></td>
+				<td th:text="${kh.tenkhoahoc}"></td>
+				<td th:text="${kh.ngaybatdau}" ></td>
+				<td th:text="${kh.ngayketthuc}"></td>
 				<td width=300 ><a th:href="@{'/addempkhoahoc/'+${kh.khoahoc_id}}"><i class="fa fa-plus"></i></a>
 				&nbsp;&nbsp; 
 				<a th:href="@{'/editkhoahoc/' + ${kh.khoahoc_id}}"><i class="fas fa-pencil-alt"></i></a>
@@ -48,8 +44,7 @@
   				<a th:href="@{'/reportempkhoahoc/'+${kh.khoahoc_id}}"><i class="fas fa-download"></i></a>
   				&nbsp;&nbsp; 
   				<a th:href="@{'/reportempkhoahoc2/'+${kh.khoahoc_id}}"><i class="fas fa-download"></i></a>
-  				&nbsp;&nbsp; 
-  				 	
+  				
 				<span th:if="${id}==${kh.khoahoc_id}" class="text-danger"><br/>Chỉ có thể xóa khi lớp học trống!</span>
 				<!-- <span th:if="${kh.status}==false" class="text-danger">sdfsdfsd</span> -->
 				</td>

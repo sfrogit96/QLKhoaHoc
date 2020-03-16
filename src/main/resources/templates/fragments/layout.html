@@ -51,8 +51,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
-
-
 	<div class="wrapper" th:fragment="sidebar">
 
 		<!-- Navbar -->
@@ -113,8 +111,27 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 								<li class="nav-item"><a th:href="@{/khoahoc}"
 									class="nav-link">
 
-										<p>Xem Khóa Học</p>
+										<p>Xem Tất Cả Khóa Học</p>
+								</a></li> 
+								
+								<li class="nav-item"><a th:href="@{/activedkhoahoc}"
+									class="nav-link">
+
+										<p>Khóa Học Actived</p>
 								</a></li>
+								
+								<li class="nav-item"><a th:href="@{/disabledkhoahoc}"
+									class="nav-link">
+										<p>Khóa Học Disabled</p>
+								</a></li>
+								
+									<li class="nav-item"><a th:href="@{/baikiemtra}"
+									class="nav-link">
+
+										<p>Bài Kiểm Tra</p>
+								</a></li>
+								
+								
 								<li class="nav-item"><a th:href="@{/addkhoahoc}"
 									class="nav-link">
 
@@ -128,19 +145,36 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 								</p>
 						</a>
 							<ul class="nav nav-treeview">
-								<li class="nav-item"><a th:href="@{/emp}" class="nav-link">
+								<li class="nav-item"><a th:href="@{/hocvien}" class="nav-link">
 
 										<p>Xem học viên</p>
 								</a></li>
-								<li class="nav-item"><a th:href="@{/addemp}"
+								<li class="nav-item"><a th:href="@{/addhocvien}"
 									class="nav-link">
 
 										<p>Thêm học viên</p>
 								</a></li>
 							</ul></li>
+							
+							<li class="nav-item"><a href="#" class="nav-link dropdown">
+								<p>
+									Giảng Viên <i class="right fas fa-angle-left"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a th:href="@{/trainer}" class="nav-link">
+
+										<p>Xem Giảng Viên</p>
+								</a></li>
+								<li class="nav-item"><a th:href="@{/addtrainer}"
+									class="nav-link">
+
+										<p>Thêm Giảng Viên</p>
+								</a></li>
+							</ul></li>
 						<li class="nav-item">
 							<form action="#" th:action="@{/logout}" method="POST">
-								<button type="submit" class="btn btn-secondary">Logout</button>
+								<button type="submit" style="margin-left: 5px;" class="btn bg-danger">Logout</button>
 							</form> <!-- <a href="#" th:action="@{/logout}" method="POST" class="nav-link">
               <p>
                 Logout
@@ -157,23 +191,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 
 
-
-
-
-
-
-
-
 	<!-- Main content -->
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head">
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+ 
+ 
+<div th:replace="fragments/layout :: sidebar"></div>
+
+  <!-- Content Wrapper. Contains page content -->
+   <!-- QUAN TRONG -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    
+	 
+        <div align="center">
+		<h2>THÊM BÀI KIỂM TRA</h2>
+		<form action="#" th:action="@{'/savebkt/'+*{kh.khoahoc_id}}" th:object="${bkt}" method="post">
+		<table class="table table-striped">
+		<tr>
+		<td width="400">Khóa học ID:</td>
+		<td><input class="form-control" type="text" th:field="*{kh.khoahoc_id}" readonly="readonly"/> </td>
+		</tr>
+		<tr>
+		<td>Tên bài kiểm tra: </td>
+		<td><input class="form-control" type="text" th:field="*{tenbaikiemtra}" />
+		 
+		<div th:if="${dateError}!=null"><br/><span th:utext="${dateError}" class="text-danger"></span></div>
+                            </td>
+		</tr>
+  		<tr>
+		<td>Thời gian kiểm tra: </td>
+		<td><input class="form-control" type="date" th:field="*{thoigiankiemtra}" />
+		 
+		</td>
+		</tr>
+<!--  		<div th:if="${dateError}!=null">
+		<br/><p th:utext="${dateError}" class="text-danger"></p> </div>  -->
+		<tr>
+		<td>Nội dung bài kiểm tra: </td>
+		<td><input class="form-control" type="text" th:field="*{motakt}" />
+		 
+		</td>
+		</tr>
+		<tr>
+		<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
+		</tr>
+		</table>
+		</form>
+	</div>
+  
+	<!-- End Main content -->
+        
+</div>
+        
+ <footer th:replace="fragments/layout :: footer"></footer>
+
+</body>
+</html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	

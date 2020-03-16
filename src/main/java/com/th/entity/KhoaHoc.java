@@ -36,7 +36,11 @@ public class KhoaHoc {
 	@NotNull(message = "Ngày kết thúc không được để trống!")
 	private Date ngayketthuc;
 	
+	private boolean status;
+	
 	private List<EmpKhoaHoc> empKhoaHoc;
+	
+	private List<BaiKiemTra> baiKiemTra;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -98,6 +102,21 @@ public class KhoaHoc {
 	public void setEmpKhoaHoc(List<EmpKhoaHoc> empKhoaHoc) {
 		this.empKhoaHoc = empKhoaHoc;
 	}
+	 
+	@OneToMany(mappedBy = "kh")
+	public List<BaiKiemTra> getBaiKiemTra() {
+		return baiKiemTra;
+	}
+	public void setBaiKiemTra(List<BaiKiemTra> baiKiemTra) {
+		this.baiKiemTra = baiKiemTra;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 	@Override
 	public String toString() {
 		return "KhoaHoc [khoahoc_id=" + khoahoc_id + ", tenkhoahoc=" + tenkhoahoc + ", ngaybatdau=" + ngaybatdau

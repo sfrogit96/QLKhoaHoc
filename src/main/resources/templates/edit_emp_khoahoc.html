@@ -28,7 +28,7 @@
 								readonly="readonly" /></td>
 						</tr>
 						<tr>
-							<td>ID Học Viên/Trainer</td>
+							<td>ID Học Viên/Giảng Viên</td>
 							<td><select class="form-control" th:field="*{emp.id}">
 									<option th:each="event: ${empList}" th:value="${event.id}"
 										th:text="${event.ten}+'  ID = '+${event.id}"></option>
@@ -45,8 +45,7 @@
 						</tr>
 						<tr>
 							<td>Mô Tả:</td>
-							<td><input class="form-control" type="text"
-								th:field="*{mota}" /></td>
+							<td> <textarea class="form-control input-sm"  rows="7" cols="10" th:field="*{mota}" /> </td>
 						</tr>
 						<tr>
 							<td>Thời gian bắt đầu:</td>

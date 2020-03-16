@@ -31,7 +31,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${emp.chucvu.tenchucvu}=='Học Viên'" th:each="emp: ${listEmp}">
+				<tr th:if="${emp.chucvu.tenchucvu}=='Giảng Viên'" th:each="emp: ${listEmp}">
 				<td th:text="${emp.id}"></td>
 				<td th:text="${emp.ten}"></td>
 				<td th:text="${emp.ngaysinh}"></td>
@@ -39,11 +39,11 @@
 				<td th:text="${emp.diachi}"></td>
 				<td th:text="${emp.email}"></td>
 				<td th:text="${emp.sdt}"></td>
-				 <td >
-				 <a th:href="@{'/edithocvien/' + ${emp.id}}"><i class="fas fa-pencil-alt"></i></a>
+				 <td>
+				 <a th:href="@{'/edittrainer/' + ${emp.id}}"><i class="fas fa-pencil-alt"></i></a>
 				 &nbsp;&nbsp;<a th:href="@{'/deleteemp/'+${emp.id}}"><i class="fa fa-trash"></i></a>
 				 </td>
-				</tr> 
+				</tr>
 			</tbody>
 
 		</table> 

@@ -20,18 +20,22 @@
 			<table class="table table-striped">
 
 				<tr>
-					<td>ID User: </td>
+					<td  width="400">ID User: </td>
 					<td><input class="form-control"  type="text" th:field="*{id}"
 						readonly="readonly" /></td>
 				</tr>
 				<tr>
 					<td>Tên User: </td>
-					<td><input class="form-control"  type="text" th:field="*{email}" /></td>
+					<td><input class="form-control"  type="text" th:field="*{email}" />
+					<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                            </span></td>
 				</tr>
 
 				<tr>
 					<td>Password:</td>
-					<td><input class="form-control"  type="password" th:field="*{password}" /></td>
+					<td><input class="form-control"  type="password" th:field="*{password}" />
+					<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                            </span></td>
 				</tr>
 
 				<tr>
@@ -39,7 +43,8 @@
 					<td><select class="form-control" th:field="*{roles}">
 		<option th:value="'1'">ROLE_ADMIN</option>
 		<option th:value="'2'">ROLE_MANAGER</option>
-		</select></td>
+		</select>
+		<div th:if="${userError}!=null"><br/><span th:utext="${userError}" class="text-danger"></span></td>
 				</tr>
 				<tr>
 					<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>

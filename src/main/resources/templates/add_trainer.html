@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: head"></head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+
+	<div th:replace="fragments/layout :: sidebar"></div>
+
+	<!-- Content Wrapper. Contains page content -->
+	<!-- QUAN TRONG -->
+	<div class="content-wrapper">
+
+		<!-- Main content -->
+
+
+		<div align="center">
+			<h2>THÊM GIẢNG VIÊN</h2>
+
+			<form action="#"  th:object="${emp}" th:action="@{'/empsave/'+${emp.chucvu.id}}"
+				method="post">
+				<table class="table table-striped">
+
+					<!-- <tr>
+<td>ID</td>
+<td><input type="text" th:field="*{id}" /></td>
+</tr> -->
+					<tr>
+						<td width="400">Tên giảng viên</td>
+						<td><input class="form-control" type="text" th:field="*{ten}" />
+						<span class="text-danger" th:if="${#fields.hasErrors('ten')}" th:errors="*{ten}">
+                            Tên Error</span></td>
+					</tr>
+
+					<tr>
+						<td>Ngày sinh</td>
+						<td><input class="form-control" type="date"
+							th:field="*{ngaysinh}" />
+							<span class="text-danger" th:if="${#fields.hasErrors('ngaysinh')}" th:errors="*{ngaysinh}">
+                            Ngày sinh Error</span></td>
+					</tr>
+
+					<tr>
+						<td>Giới tính</td>
+						<td><select th:field="*{gioitinh}" class="form-control">
+								<option th:value="'Nam'" th:text="Nam"></option>
+								<option th:value="'Nữ'" th:text="Nữ"></option>
+						</select></td>
+					</tr>
+
+					<tr>
+						<td>Địa chỉ</td>
+						<td><input class="form-control" type="text"
+							th:field="*{diachi}" /></td>
+					</tr>
+
+					<tr>
+						<td>Email</td>
+						<td><input class="form-control" type="text"
+							th:field="*{email}" />
+							<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email
+                            Error</span>
+							</td>
+						
+					</tr>
+
+					<tr>
+						<td>Số Điện Thoại</td>
+						<td><input class="form-control" type="text" th:field="*{sdt}" />
+						<span class="text-danger" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">
+                            Phone Error</span></td>
+					</tr>
+<!-- 					<tr>
+						<td>Chức vụ</td>
+						<td><select th:field="*{chucvu.id}" class="form-control">
+								<option th:value="'1'">Học Viên</option>
+								<option th:value="'2'">Trainer</option>
+								th:text="Trainer"
+						</select>
+				<div th:if="${chucvuError}!=null"><br/><span th:utext="${chucvuError}" class="text-danger"></span></div>
+						</td>
+					</tr> -->
+					<tr>
+						<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+
+		<!-- End Main content -->
+
+	</div>
+
+	<footer th:replace="fragments/layout :: footer"></footer>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

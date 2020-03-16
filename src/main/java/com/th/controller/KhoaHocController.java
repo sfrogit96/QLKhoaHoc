@@ -51,6 +51,19 @@ public class KhoaHocController {
 		model.addAttribute("listKhoaHoc", listKhoaHoc);
 		return "show_khoahoc";
 	}
+	@RequestMapping("/activedkhoahoc")
+	public String viewKhoaHoc2(Model model) {
+		List<KhoaHoc> listKhoaHoc = khoaHocService.listAll();
+		model.addAttribute("listKhoaHoc", listKhoaHoc);
+		return "show_khoahoc2";
+	}
+	
+	@RequestMapping("/disabledkhoahoc")
+	public String viewKhoaHoc3(Model model) {
+		List<KhoaHoc> listKhoaHoc = khoaHocService.listAll();
+		model.addAttribute("listKhoaHoc", listKhoaHoc);
+		return "show_khoahoc3";
+	}
 	
 	@RequestMapping("/editkhoahoc/{id}")
 	public ModelAndView viewFormKhoaHoc(@PathVariable(name = "id") int id) {
@@ -86,7 +99,7 @@ public class KhoaHocController {
 				}
 		}
 		
-		
+		kh.setStatus(true);
 		khoaHocService.save(kh);
 		return "redirect:/khoahoc";
 	}
@@ -102,12 +115,13 @@ public class KhoaHocController {
 				model.addAttribute("attributekhoahoc", kh);
 				return "edit_khoahoc";
 			}
+
 			Date startDate = kh.getNgaybatdau();
 			Date endDate = kh.getNgayketthuc();
 			LocalDateTime d1 = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault());
 			LocalDateTime d2 = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault());
-			if(Duration.between(d1, d2).toDays()<30) {
-			model.addAttribute("dateError","Ngày kết thúc phải lớn hơn ngày bắt đầu 30 ngày!");
+			if(Duration.between(d1, d2).toDays()<1) {
+			model.addAttribute("dateError","Ngày kết thúc phải lớn hơn ngày bắt đầu!");
 			model.addAttribute("attributekhoahoc",kh);
 			return "edit_khoahoc";
 			}
@@ -116,12 +130,21 @@ public class KhoaHocController {
 			return "edit_khoahoc";
 			}
 		}
-		
-		
+		kh.setStatus(true);
 		khoaHocService.save(kh);
 		return "redirect:/khoahoc";
 	}
 	
+	@RequestMapping(value = "/changestatus/{id}", method = RequestMethod.GET)
+	public String changeStatus(@PathVariable("id") int id) {
+		KhoaHoc kh = khoaHocService.get(id);
+		if(kh.isStatus()==true) {
+			kh.setStatus(false);
+		}
+		else kh.setStatus(true);
+		khoaHocService.save(kh);
+		return "redirect:/khoahoc";
+	}
 	
 	@RequestMapping(value = "/deletekhoahoc/{id}", method = RequestMethod.GET)
 	public String deleteKhoaHoc(@PathVariable("id") int id, Model model) {

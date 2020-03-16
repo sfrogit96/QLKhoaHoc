@@ -26,16 +26,19 @@
 <td><input type="text" th:field="*{id}" /></td>
 </tr> -->
  				<tr>
-					<td width="400">Tên user</td>
+					<td width="400">Tên User</td>
 					<td><input class="form-control" type="text" th:field="*{email}" />
 					<span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
-                            Ngày sinh Error</span></td>
-					
+                            </span></td>
 				</tr>
 
 				<tr>
 					<td>Password</td>
-					<td><input class="form-control" type="password" th:field="*{password}" /></td>
+					<td><input class="form-control" type="password" th:field="*{password}" />
+					
+					<span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                            </span>
+                            </td>
 				</tr> 
 				<tr> 
 
@@ -47,17 +50,16 @@
 					  <td>Role</td>
 					<td>
 				<select class="form-control" th:field="*{roles}">
-		<option th:value="'1'">ROLE_ADMIN</option>
-		<option th:value="'2'">ROLE_MANAGER</option>
+		<option th:value="'1'">ADMIN</option>
+		<option th:value="'2'">MANAGER</option>
 		</select>
 	<div th:if="${userError}!=null"><br/><span th:utext="${userError}" class="text-danger"></span></div>
-		
+
 		</td>
 <!-- 		<select class="form-control"  th:field="*{roles}" >
 		<option th:each="role: *{roles}" th:value="*{role.id}" th:text="*{role.name}"></option>
 		</select> -->
  	 			</tr> 
-				
 				<tr>
 					<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
 				</tr>

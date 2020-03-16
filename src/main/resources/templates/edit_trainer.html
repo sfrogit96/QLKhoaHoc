@@ -15,18 +15,19 @@
 
 
 		<div align="center">
-			<h2>THÊM HỌC VIÊN</h2>
+			<h2>EDIT GIẢNG VIÊN</h2>
 
-			<form action="#" th:action="@{/empsave}" th:object="${emp}"
+			<form action="#"  th:object="${emp}" th:action="@{'/empsave/'+${emp.chucvu.id}}"
 				method="post">
 				<table class="table table-striped">
 
-					<!-- <tr>
-<td>ID</td>
-<td><input type="text" th:field="*{id}" /></td>
-</tr> -->
 					<tr>
-						<td width="400">Tên học viên</td>
+							<td>ID:</td>
+							<td><input class="form-control" type="text" th:field="*{id}"
+								readonly="readonly" /></td>
+						</tr>
+					<tr>
+						<td width="400">Tên giảng viên</td>
 						<td><input class="form-control" type="text" th:field="*{ten}" />
 						<span class="text-danger" th:if="${#fields.hasErrors('ten')}" th:errors="*{ten}">
                             Tên Error</span></td>
@@ -70,16 +71,16 @@
 						<span class="text-danger" th:if="${#fields.hasErrors('sdt')}" th:errors="*{sdt}">
                             Phone Error</span></td>
 					</tr>
-					<tr>
+<!-- 					<tr>
 						<td>Chức vụ</td>
 						<td><select th:field="*{chucvu.id}" class="form-control">
 								<option th:value="'1'">Học Viên</option>
 								<option th:value="'2'">Trainer</option>
-								<!-- th:text="Trainer" -->
+								th:text="Trainer"
 						</select>
 				<div th:if="${chucvuError}!=null"><br/><span th:utext="${chucvuError}" class="text-danger"></span></div>
 						</td>
-					</tr>
+					</tr> -->
 					<tr>
 						<td colspan="2"><button class="btn btn-success" type="submit">Save</button></td>
 					</tr>

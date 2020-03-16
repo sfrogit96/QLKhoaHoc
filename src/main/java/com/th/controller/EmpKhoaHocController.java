@@ -33,9 +33,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.th.entity.BaiKiemTra;
+import com.th.entity.DiemKiemTra;
 import com.th.entity.Emp;
 import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
+import com.th.service.DiemKiemTraService;
 import com.th.service.EmpKhoaHocService;
 import com.th.service.EmpService;
 import com.th.service.KhoaHocService;
@@ -51,6 +54,9 @@ public class EmpKhoaHocController {
 
 	@Autowired
 	EmpKhoaHocService empKhoaHocService;
+	
+	@Autowired
+	DiemKiemTraService diemKiemTraService;
 
 	@Autowired
 	ServletContext context;
@@ -67,6 +73,7 @@ public class EmpKhoaHocController {
 
 		List<EmpKhoaHoc> khoahoc = kh.getEmpKhoaHoc();
 
+		model.addAttribute("tenkh",kh.getTenkhoahoc());
 		model.addAttribute("listmota", khoahoc);
 
 		return "show_emp_khoahoc";
@@ -96,7 +103,6 @@ public class EmpKhoaHocController {
 			String fullPath = request.getServletContext().getRealPath("/resources/reports/" + "employees" + ".xls");
 			filedownload(fullPath, response, "employees.xls");
 		}
-
 	}
 
 	private void filedownload(String fullPath, HttpServletResponse response, String fileName) {
@@ -150,6 +156,10 @@ public class EmpKhoaHocController {
 		// Lay het tat ca hoc vien cua khoa hoc do
 		KhoaHoc khID = khoaHocService.get(empKhoaHoc.getKhoaHoc().getKhoahoc_id());
 		List<EmpKhoaHoc> listhocvien = khID.getEmpKhoaHoc();
+		
+		
+		List<BaiKiemTra> listbkt = khID.getBaiKiemTra();
+		
 
 		for (EmpKhoaHoc hv : listhocvien) {
 			// Kiem tra ID => add or edit
@@ -171,12 +181,24 @@ public class EmpKhoaHocController {
 			}
 		}
 
-
 		if (bindingResult.hasErrors()) {
 			if (empKhoaHoc.getThoigianbatdau() == null && empKhoaHoc.getThoigianketthuc() == null) {
 				empKhoaHoc.setThoigianbatdau(khID.getNgaybatdau());
 				empKhoaHoc.setThoigianketthuc(khID.getNgayketthuc());
+				
+				
+				//Set bai kiem tra doi voi hoc sinh moi duoc add vao
 				empKhoaHocService.save(empKhoaHoc);
+				for(BaiKiemTra bkt: listbkt) {
+					DiemKiemTra dkt = new DiemKiemTra();
+					dkt.setBaikt(bkt);
+					dkt.setEmpKhoaHoc(empKhoaHoc);
+					dkt.setDiemso(-1);
+					diemKiemTraService.save(dkt);
+					System.out.println("SAVED BKT TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+				}
+				
+				
 				return "redirect:/khoahoc";
 			} else {
 			model.addAttribute("empKhoaHoc", empKhoaHoc);
@@ -211,13 +233,33 @@ public class EmpKhoaHocController {
 
 			return "add_emp_khoahoc";
 		}
+		
+		
+		//Set bai kiem tra doi voi hoc sinh moi duoc add vao
+		for(BaiKiemTra bkt: listbkt) {
+			DiemKiemTra dkt = new DiemKiemTra();
+			dkt.setBaikt(bkt);
+			dkt.setEmpKhoaHoc(empKhoaHoc);
+			dkt.setDiemso(-1);
+			diemKiemTraService.save(dkt);
+			System.out.println("SAVED BKT TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+		}
+		
 		empKhoaHocService.save(empKhoaHoc);
 		return "redirect:/khoahoc";
 	}
 
 	@RequestMapping(value = "/deleteempkhoahoc/{id}", method = RequestMethod.GET)
 	public String deleteEmpKhoaHoc(@PathVariable("id") int id) {
+		
+//		EmpKhoaHoc empKhoaHoc = empKhoaHocService.get(id);
+//		List<DiemKiemTra> listDkt = empKhoaHoc.getDiemKiemTra();
+//		
+//		for(DiemKiemTra dkt: listDkt) {
+//			diemKiemTraService.delete(dkt.getIddiemkt());
+//		}
 		empKhoaHocService.delete(id);
+		
 		return "redirect:/khoahoc";
 	}
 

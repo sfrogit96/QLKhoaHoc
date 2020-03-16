@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
  
 @Entity
 @Table(name = "aht_user")
@@ -32,6 +33,8 @@ public class User implements Serializable {
 	private String email;
 	
 	@Column(name = "password", nullable = false)
+	@NotEmpty(message = "Password không được để trống!")
+	@Pattern(regexp = "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,100})", message = "Password ít nhất 6 ký tự, gồm ký tự đặc biệt, chữ hoa, chữ thường, số!")
 	private String password;
 	
 	@ManyToMany

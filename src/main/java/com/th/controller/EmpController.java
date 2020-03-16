@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.th.entity.ChucVu;
 import com.th.entity.Emp;
 import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
@@ -46,66 +47,134 @@ public class EmpController {
 		binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
 	}
 	
-	@RequestMapping("/emp")
+	@RequestMapping("/hocvien")
 	public String viewEmp(Model model) {
 		List<Emp> listEmp = empService.listAll();
 		model.addAttribute("listEmp", listEmp);
 		return "show_emp";
 	}
 	
-	@RequestMapping("/addemp")
-	public String addEmp(Model model) {
-		Emp emp = new Emp();
-		model.addAttribute("emp", emp);
-		return "add_emp";
+	@RequestMapping("/trainer")
+	public String viewEmp2(Model model) {
+		List<Emp> listEmp = empService.listAll();
+		model.addAttribute("listEmp", listEmp);
+		return "show_emp2";
 	}
 	
-	@PostMapping(value = "/empsave")
-	public String saveEmp(@ModelAttribute("emp") @Valid Emp emp, BindingResult bindingResult, Model model) {
-		
-		
-		
-		if(bindingResult.hasErrors() || emp.getChucvu().getId()!= 1 || emp.getChucvu().getId()!=2) {
-			System.out.println("Error to save emp");
-			model.addAttribute("emp",emp);
-			if(emp.getId() != 0) {
-				if(emp.getChucvu().getId()<1 || emp.getChucvu().getId()>2) {
-					System.out.println("Chay vao day");
-					System.out.println(emp.getChucvu().getId());
-					model.addAttribute("chucvuError","Nhập chức vụ lỗi!");
-					return "edit_emp";
-				}
-				if(bindingResult.hasErrors()){
-					return "edit_emp";
-				}
-				empService.save(emp);
-				return "redirect:/emp";
-			}
-			if(emp.getChucvu().getId()<1 || emp.getChucvu().getId()>2) {
-				System.out.println("Chay vao day 2");
-				model.addAttribute("chucvuError","Nhập chức vụ lỗi!");
-				return "add_emp";
-			}
-			if(bindingResult.hasErrors()){
-				return "add_emp";
-			}
-		}
-		
-		empService.save(emp);
-		return "redirect:/emp";
+	@RequestMapping("/addhocvien")
+	public String addEmp(Model model) {
+		Emp emp = new Emp();
+		ChucVu x = new ChucVu();
+		x.setId(1);
+		emp.setChucvu(x);
+		model.addAttribute("emp", emp);
+		return "add_hocvien";
 	}
-	@RequestMapping("/editemp/{id}")
+	
+	@RequestMapping("/addtrainer")
+	public String addEmp2(Model model) {
+		Emp emp = new Emp();
+		ChucVu x = new ChucVu();
+		x.setId(2);
+		emp.setChucvu(x);
+		model.addAttribute("emp", emp);
+		return "add_trainer";
+	}
+	
+	@RequestMapping("/edithocvien/{id}")
 	public ModelAndView editEmp(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_emp");
+		ModelAndView mav = new ModelAndView("edit_hocvien");
 		Emp emp  = empService.get(id);
 		mav.addObject("emp", emp);
 		return mav;
 	}
 	
+	@RequestMapping("/edittrainer/{id}")
+	public ModelAndView editEmp2(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_trainer");
+		Emp emp  = empService.get(id);
+		mav.addObject("emp", emp);
+		return mav;
+	}
+	
+	
+	@PostMapping(value = "/empsave/{chucvuid}")
+	public String saveEmp(@PathVariable(name = "chucvuid") int chucvuid, @ModelAttribute("emp") @Valid Emp emp, BindingResult bindingResult, Model model) {
+		ChucVu x = new ChucVu();
+		x.setId(chucvuid);
+		emp.setChucvu(x);
+		
+		////////////////HOCVIEN///////////////////
+		if((bindingResult.hasErrors() || emp.getChucvu().getId()!= 1 || emp.getChucvu().getId()!=2)&& chucvuid==1) {
+			System.out.println("Error to save emp");
+			model.addAttribute("emp",emp);
+			if(emp.getId() != 0) {
+				if(emp.getChucvu().getId()<1 || emp.getChucvu().getId()>2) {
+					System.out.println(emp.getChucvu().getId());
+					model.addAttribute("chucvuError","Nhập chức vụ lỗi!");
+					return "edit_hocvien";
+				}
+				if(bindingResult.hasErrors()){
+					return "edit_hocvien";
+				}
+				empService.save(emp);
+				return "redirect:/hocvien";
+			}
+			if(emp.getChucvu().getId()<1 || emp.getChucvu().getId()>2) {
+				System.out.println("Chay vao day 2");
+				model.addAttribute("chucvuError","Nhập chức vụ lỗi!");
+				return "add_hocvien";
+			}
+			if(bindingResult.hasErrors()){
+				return "add_hocvien";
+			}
+		}
+		
+		/////////////////TRAINER///////////////////
+		
+		if((bindingResult.hasErrors() || emp.getChucvu().getId()!= 1 || emp.getChucvu().getId()!=2) && chucvuid==2) {
+			System.out.println("Error to save emp");
+			model.addAttribute("emp",emp);
+			if(emp.getId() != 0) {
+				if(emp.getChucvu().getId()<1 || emp.getChucvu().getId()>2) {
+				
+					System.out.println(emp.getChucvu().getId());
+					model.addAttribute("chucvuError","Nhập chức vụ lỗi!");
+					return "edit_trainer";
+				}
+				if(bindingResult.hasErrors()){
+					return "edit_trainer";
+				}
+				empService.save(emp);
+				return "redirect:/trainer";
+			}
+			if(emp.getChucvu().getId()<1 || emp.getChucvu().getId()>2) {
+				System.out.println("Chay vao day 2");
+				model.addAttribute("chucvuError","Nhập chức vụ lỗi!");
+				return "add_trainer";
+			}
+			if(bindingResult.hasErrors()){
+				return "add_trainer";
+			}
+		}
+		
+		empService.save(emp);
+		if(chucvuid==1)
+		return "redirect:/hocvien";
+		else
+		return "redirect:/trainer";
+	}
+
+	
 	@RequestMapping(value = "/deleteemp/{id}", method = RequestMethod.GET)
 	public String deleteEmp(@PathVariable("id") int id) {
+		Emp emp = empService.get(id);
+		int id2 =  emp.getChucvu().getId(); 
 		empService.delete(id);
-		return "redirect:/emp";
+		if (id2==1)
+		return "redirect:/hocvien";
+		else
+		return "redirect:/trainer";
 	}
 	
 	

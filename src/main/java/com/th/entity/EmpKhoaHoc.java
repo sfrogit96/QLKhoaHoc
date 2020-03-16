@@ -1,6 +1,7 @@
 package com.th.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,6 +32,10 @@ public class EmpKhoaHoc {
 	@NotNull(message = "Thời gian kết thúc học không được bỏ trống!")
 	private Date thoigianketthuc;
 	private Emp emp;
+	
+	
+	private List<DiemKiemTra> diemKiemTra; 
+	
 	
 	@Id
 	@Column(name = "emp_khoahoc_id")
@@ -80,6 +86,18 @@ public class EmpKhoaHoc {
 	public void setEmp(Emp emp) {
 		this.emp = emp;
 	}
+	 
+	
+	@OneToMany(mappedBy = "empKhoaHoc", cascade = CascadeType.REMOVE) 
+	public List<DiemKiemTra> getDiemKiemTra() {
+		return diemKiemTra;
+	}
+	public void setDiemKiemTra(List<DiemKiemTra> diemKiemTra) {
+		this.diemKiemTra = diemKiemTra;
+	}
+	
+	
+	
 	public EmpKhoaHoc() {
 	}
 	public EmpKhoaHoc(int id, String mota) {

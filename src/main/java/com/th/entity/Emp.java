@@ -24,6 +24,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.annotations.Cascade;
 import org.springframework.format.annotation.DateTimeFormat;
  
 
@@ -132,7 +133,7 @@ public class Emp {
 		this.sdt = sdt;
 		this.chucvu = chucvu;
 	}
-	@OneToMany(mappedBy = "emp")
+	@OneToMany(mappedBy = "emp", cascade = CascadeType.REMOVE) 
 	public List<EmpKhoaHoc> getEmpKhoaHoc() {
 		return empKhoaHoc;
 	}
