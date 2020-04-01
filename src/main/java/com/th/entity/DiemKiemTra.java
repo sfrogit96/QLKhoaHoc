@@ -16,6 +16,8 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "aht_diemkiemtra")
 public class DiemKiemTra {
@@ -30,10 +32,12 @@ public class DiemKiemTra {
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "aht_diem_empkhoahoc")
+	@JsonIgnore
 	private EmpKhoaHoc empKhoaHoc;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "aht_baikt_diemkt")
+	@JsonIgnore
 	private BaiKiemTra baikt;
 	
 	public int getIddiemkt() {

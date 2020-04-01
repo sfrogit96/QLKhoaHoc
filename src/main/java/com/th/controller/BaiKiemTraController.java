@@ -1,6 +1,7 @@
 package com.th.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+ 
 import com.th.entity.BaiKiemTra;
 import com.th.entity.DiemKiemTra;
 import com.th.entity.EmpKhoaHoc;
@@ -43,7 +44,7 @@ public class BaiKiemTraController {
 	DiemKiemTraService diemKiemTraService;
 	
 	
-	@RequestMapping("/baikiemtra/{id}/{id2}")
+	@GetMapping("/baikiemtra/{id}/{id2}")
 	public String viewDiem(@PathVariable(name = "id") int id, @PathVariable(name = "id2") int id2, Model model) {
 		
 		KhoaHoc kh = khoaHocService.get(id);
@@ -58,14 +59,32 @@ public class BaiKiemTraController {
 //			List<DiemKiemTra> dkt = empKhoaHoc.getDiemKiemTra();
 //			//show ra
 //		}
-		model.addAttribute("tenkh",kh.getTenkhoahoc());
+		model.addAttribute("kh",kh);
 		model.addAttribute("listmota", khoahoc);
 		
 		
 		model.addAttribute("baikiemtra", baiKiemTra);
 		model.addAttribute("diemkiemtra", dkt); 
 		
+		
 		return "show_diemkiemtra";
+	}
+	@GetMapping("/baikiemtra/findDkt")
+	@ResponseBody
+	public DiemKiemTra findOne(Integer id) {
+		return diemKiemTraService.get(id);
+	}
+	
+	@PostMapping("/baikiemtra/{id}/{id2}")
+	public String savedkt(@PathVariable(name = "id") int id, @PathVariable(name = "id2") int id2, DiemKiemTra d) {
+		 
+		DiemKiemTra x = diemKiemTraService.get(d.getIddiemkt());
+		x.setDiemso(d.getDiemso());
+		x.setDanhgia(d.getDanhgia());
+		
+		diemKiemTraService.save(x);
+		
+		return "redirect:/baikiemtra/{id}/{id2}";
 	}
 	
 	

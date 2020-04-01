@@ -2,6 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/layout :: head">
 </head>
+<!-- 
+
+
+<link rel="stylesheet" href="../../webjars/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"/> -->
+
+<script type="text/javascript" src="../../webjars/jquery/2.2.3/jquery.min.js"></script>
+<script type="text/javascript" src="../../webjars/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{../../js/main.js}" src="../static/js/main.js"></script>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 
@@ -9,7 +17,6 @@
 
 <div th:replace="fragments/layout :: sidebar"></div>
 
-  <!-- Content Wrapper. Contains page content -->
    <!-- QUAN TRONG -->
   <div class="content-wrapper">
 
@@ -19,7 +26,7 @@
         
         
         <div align="center">
-		<h3 class="p-2 mb-2 bg-white text-dark">LỚP HỌC: <span th:text="${tenkh}"></span></h3></div> 
+		<h3 class="p-2 mb-2 bg-white text-dark">LỚP HỌC: <span th:text="${kh.tenkhoahoc}"></span></h3></div> 
 		<div th:if="${kh.emp.chucvu.tenchucvu}=='Giảng Viên'" th:each="kh: ${listmota}">
 		<h5 class="p-2 mb-2 bg-info text-dark">TÊN GIẢNG VIÊN: <span  th:text="${kh.emp.ten}"></span></h5></div>
 		<h5 class="p-2 mb-2 bg-info text-dark">TÊN BÀI KIỂM TRA: <span  th:text="${baikiemtra.tenbaikiemtra}"></span></h5>
@@ -33,6 +40,7 @@
 					<th class="h6" width=300>TÊN HỌC VIÊN</th> 
 					<th class="h6" >ĐIỂM KIỂM TRA</th>
 					<th class="h6" >ĐÁNH GIÁ</th>
+					<th class="h6" >ACTION</th>
 					<!-- <span th:utext="${test}"></span> -->
 				</tr>
 			</thead>
@@ -43,35 +51,55 @@
 				<td th:if="${dkt.diemso}==-1">Chưa nhập</td>
 				<td th:if="${dkt.diemso}!=-1" th:text="${dkt.diemso}"></td>
 				<td th:text="${dkt.danhgia}"></td>
+				<td> <a th:href="@{../../baikiemtra/findDkt/(id=${dkt.iddiemkt})}" class="btn btn-primary eBtn">Cập nhật</a>
+					<!-- <a th:href="@{'/baikiemtra/'+${dkt.baikt.kh.khoahoc_id}+'/'+${dkt.baikt.idbaikt}}">Cập nhật</a>
+					<a th:href="@{'/baikiemtra/'+${kh.khoahoc_id}+'/'+${baikiemtra.idbaikt}}">Cập nhật3</a> -->
+				</td>
 				</tr>
 			</tbody>
-		</table></div>
-
+		</table></div> 
+      
+	<!-- End Main content -->    
+	
+	
+	<div class="myForm"> <form th:action="@{'/baikiemtra/'+${kh.khoahoc_id}+'/'+${baikiemtra.idbaikt}}" method="post">
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Update or Create</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form>
+       
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+            <label for="id" class="col-form-label">ID:</label>
+            <input type="text" class="form-control" id="iddiemkt" name="iddiemkt" value=""/>
           </div>
           <div class="form-group">
-            <label for="message-text" class="col-form-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+            <label for="name" class="col-form-label">Điểm số:</label>
+            <input type="text" class="form-control" id="diemso" name="diemso" value=""/>
           </div>
-        </form>
-      </div></div></div>
-      
-	<!-- End Main content -->      
-</div>
- 
+       		
+       		<div class="form-group">
+            <label for="capital" class="col-form-label">Đánh giá:</label>
+            <input type="text" class="form-control" id="danhgia" name="danhgia" value=""/>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="save"/> 
+      </div>
+    </div>
+  </div>
+</div> </form>
+	
+	</div>
+	  
+</div> 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
