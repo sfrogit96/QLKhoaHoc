@@ -68,14 +68,23 @@ public class EmpKhoaHocController {
 
 	@RequestMapping("/empkhoahoc/{id}")
 	public String viewKhoaHoc(@PathVariable(name = "id") int id, Model model) {
-
+		
+		int i=0; //bien dem so hoc vien
 		KhoaHoc kh = khoaHocService.get(id);
-
+		
 		List<EmpKhoaHoc> khoahoc = kh.getEmpKhoaHoc();
-
+		
+		for(EmpKhoaHoc hv:khoahoc) {
+			System.out.println("Chay vao day 1");
+			if(hv.getEmp().getChucvu().getTenchucvu().equals("Học Viên")) {
+				System.out.println("Chay vao day 2");
+				i++;
+			}
+		}
+		
 		model.addAttribute("tenkh",kh.getTenkhoahoc());
 		model.addAttribute("listmota", khoahoc);
-
+		model.addAttribute("tongsohocvien", i);
 		return "show_emp_khoahoc";
 	}
 

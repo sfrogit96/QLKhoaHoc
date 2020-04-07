@@ -21,27 +21,41 @@
 			<thead class="thead-dark"> 
 				<tr>
 					<th class="h6">ID</th>
-					<th class="h6">TÊN GIẢNG VIÊN</th>
-					<th class="h6">NGÀY SINH</th>
-					<th class="h6">GIỚI TÍNH</th>
-					<th class="h6">ĐỊA CHỈ</th>
-					<th class="h6">EMAIL</th>
+					<th class="h6">GIẢNG VIÊN</th>
+					<th class="h6">CÁC LỚP ĐANG DẠY</th>
+					<th class="h6">SỐ HỌC VIÊN</th>
+					<th class="h6">TỔNG SỐ LỚP</th>
+					<th class="h6">THỜI GIAN UPDATE</th>
 					<th class="h6">SĐT</th> 
 					<th class="h6">ACTION</th> 
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${emp.chucvu.tenchucvu}=='Giảng Viên'" th:each="emp: ${listEmp}">
+				<tr th:each="emp: ${listEmp}">
 				<td th:text="${emp.id}"></td>
 				<td th:text="${emp.ten}"></td>
-				<td th:text="${emp.ngaysinh}"></td>
-				<td th:text="${emp.gioitinh}"></td> 
-				<td th:text="${emp.diachi}"></td>
-				<td th:text="${emp.email}"></td>
+				<td>
+				<span th:each="empKhoaHoc: ${emp.empKhoaHoc}">
+  				
+  				<span th:text="${empKhoaHoc.khoaHoc.tenkhoahoc}"></span>
+  				&nbsp;&nbsp;  
+  				<br/></span> 
+				</td>
+				
+				<td>
+				<span th:each="empKhoaHoc: ${emp.empKhoaHoc}">
+  				
+  				<span th:text="${empKhoaHoc.thongKe.tongsohocvien}"></span>
+  				&nbsp;&nbsp;  
+  				<br/></span>   
+				</td>
+			 
+				<td th:text="${emp.empKhoaHoc[0].thongKe.solopdangday}"></td>  
+ 				<td th:text="${#dates.format(emp.empKhoaHoc[0].thongKe.thoigianthongke, 'dd-MM-yyyy')} "></td>
+				
 				<td th:text="${emp.sdt}"></td>
 				 <td>
-				 <a th:href="@{'/edittrainer/' + ${emp.id}}"><i class="fas fa-pencil-alt"></i></a>
-				 &nbsp;&nbsp;<a th:href="@{'/deleteemp/'+${emp.id}}"><i class="fa fa-trash"></i></a>
+				 <a th:href="@{'/thongke/capnhat/' + ${emp.id}}"><i class="fas fa-redo-alt"></i></a>
 				 </td>
 				</tr>
 			</tbody>

@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,15 +27,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class EmpKhoaHoc {
 	private int id; 
 	private String mota;
-	private KhoaHoc khoaHoc;
 	@NotNull(message = "Thời gian bắt đầu học không được bỏ trống!")
 	private Date thoigianbatdau;
 	@NotNull(message = "Thời gian kết thúc học không được bỏ trống!")
 	private Date thoigianketthuc;
+	
 	private Emp emp;
-	
-	
+	private KhoaHoc khoaHoc;
 	private List<DiemKiemTra> diemKiemTra; 
+	private ThongKe thongKe;
+	
 	
 	
 	@Id
@@ -97,7 +99,14 @@ public class EmpKhoaHoc {
 	}
 	
 	
-	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "aht_thongke_id_thongke")
+	public ThongKe getThongKe() {
+		return thongKe;
+	}
+	public void setThongKe(ThongKe thongKe) {
+		this.thongKe = thongKe;
+	}
 	public EmpKhoaHoc() {
 	}
 	public EmpKhoaHoc(int id, String mota) {

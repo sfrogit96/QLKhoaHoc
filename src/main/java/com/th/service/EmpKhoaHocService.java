@@ -16,6 +16,14 @@ public class EmpKhoaHocService {
 	@Autowired
 	private EmpKhoaHocRepository empKhoaHocRepository;
 	
+	public List<EmpKhoaHoc> listbyemp(int empId){
+		return empKhoaHocRepository.findAllByCurrentEmpKhoaHoc(empId);
+	}
+	
+	public List<EmpKhoaHoc> listbykh(int khId){
+		return empKhoaHocRepository.findAllByCurrentEmpKhoaHoc2(khId);
+	}
+	
 	public List<EmpKhoaHoc> listAll(){
 		return empKhoaHocRepository.findAll();
 	}

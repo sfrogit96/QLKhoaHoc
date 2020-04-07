@@ -172,6 +172,20 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 										<p>Thêm Giảng Viên</p>
 								</a></li>
 							</ul></li>
+							
+							<li class="nav-item"><a href="#" class="nav-link dropdown">
+								<p>
+									Thống Kê <i class="right fas fa-angle-left"></i>
+								</p>
+						</a>
+							<ul class="nav nav-treeview">
+								<li class="nav-item"><a th:href="@{/thongke/giangvien}" class="nav-link">
+
+										<p>Xem Thống Kê</p>
+								</a></li>
+								
+							</ul></li>
+							
 						<li class="nav-item">
 							<form action="#" th:action="@{/logout}" method="POST">
 								<button type="submit" style="margin-left: 5px;" class="btn bg-danger">Logout</button>

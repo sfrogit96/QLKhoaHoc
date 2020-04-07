@@ -14,6 +14,10 @@ public class EmpService {
 	@Autowired
 	private EmpRepository empRepository;
 	
+	public List<Emp> listbychucvu(int empId){
+		return empRepository.findAllByCurrentEmp(empId);
+	}
+	
 	public List<Emp> listAll(){
 		return empRepository.findAll();
 	}
