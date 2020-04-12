@@ -45,7 +45,8 @@ h6::before {
 		<div th:if="${kh.emp.chucvu.tenchucvu}=='Giảng Viên'" th:each="kh: ${listmota}">
 		<h5 class="p-2 mb-2 bg-info text-dark">TÊN GIẢNG VIÊN: <span  th:text="${kh.emp.ten}"></span></h5></div>
 		<h5 class="p-2 mb-2 bg-info text-dark">TÊN BÀI KIỂM TRA: <span  th:text="${baikiemtra.tenbaikiemtra}"></span></h5>
-		<h5 class="p-2 mb-2 bg-info text-dark">THỜI GIAN KIỂM TRA: <span  th:text="${baikiemtra.thoigiankiemtra}"></span></h5>
+		<h5 class="p-2 mb-2 bg-info text-dark">THỜI GIAN KIỂM TRA: <span  th:text="${baikiemtra.thoigian}"></span></h5>
+		<h5 class="p-2 mb-2 bg-info text-dark">NGÀY KIỂM TRA: <span  th:text="${baikiemtra.thoigiankiemtra}"></span></h5>
 		 
 		 
 		<table class="table table-striped table-bordered mydatatable">

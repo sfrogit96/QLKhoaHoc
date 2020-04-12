@@ -38,6 +38,7 @@ import com.th.entity.DiemKiemTra;
 import com.th.entity.Emp;
 import com.th.entity.EmpKhoaHoc;
 import com.th.entity.KhoaHoc;
+import com.th.entity.ThongKe;
 import com.th.service.DiemKiemTraService;
 import com.th.service.EmpKhoaHocService;
 import com.th.service.EmpService;
@@ -75,9 +76,9 @@ public class EmpKhoaHocController {
 		List<EmpKhoaHoc> khoahoc = kh.getEmpKhoaHoc();
 		
 		for(EmpKhoaHoc hv:khoahoc) {
-			System.out.println("Chay vao day 1");
+			
 			if(hv.getEmp().getChucvu().getTenchucvu().equals("Học Viên")) {
-				System.out.println("Chay vao day 2");
+				
 				i++;
 			}
 		}
@@ -143,7 +144,8 @@ public class EmpKhoaHocController {
 	public String addEmpKhoaHoc(@PathVariable(name = "id") int id, Model model) {
 
 		EmpKhoaHoc empKhoaHoc = new EmpKhoaHoc();
-
+		ThongKe thongKe = new ThongKe();
+		empKhoaHoc.setThongKe(thongKe);
 		KhoaHoc kh = khoaHocService.get(id);
 
 		List<Emp> empList = empService.listAll();
@@ -155,7 +157,7 @@ public class EmpKhoaHocController {
 
 	// Neu thay number = id => lay gia tri id cua EmpKhoaHoc
 	@PostMapping(value = "/saveempkhoahoc/{number}")
-	public String saveEmpKhoaHoc(@PathVariable(name = "number") int id,
+	public String saveEmpKhoaHoc(@PathVariable(name = "number") int id, 
 			@ModelAttribute("empKhoaHoc") @Valid EmpKhoaHoc empKhoaHoc, BindingResult bindingResult, Model model)
 			throws ParseException {
 
@@ -203,8 +205,10 @@ public class EmpKhoaHocController {
 					dkt.setBaikt(bkt);
 					dkt.setEmpKhoaHoc(empKhoaHoc);
 					dkt.setDiemso(-1);
-					diemKiemTraService.save(dkt);
-					System.out.println("SAVED BKT TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+					
+					if(empService.get(empKhoaHoc.getEmp().getId()).getChucvu().getTenchucvu().equals("Học Viên")) {
+					diemKiemTraService.save(dkt); }
+					
 				}
 				
 				
@@ -244,29 +248,113 @@ public class EmpKhoaHocController {
 		}
 		
 		
-		//Set bai kiem tra doi voi hoc sinh moi duoc add vao
 		for(BaiKiemTra bkt: listbkt) {
 			DiemKiemTra dkt = new DiemKiemTra();
 			dkt.setBaikt(bkt);
 			dkt.setEmpKhoaHoc(empKhoaHoc);
 			dkt.setDiemso(-1);
-			diemKiemTraService.save(dkt);
-			System.out.println("SAVED BKT TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
+			
+			if(empService.get(empKhoaHoc.getEmp().getId()).getChucvu().getTenchucvu().equals("Học Viên")) {
+			diemKiemTraService.save(dkt); }
+			
 		}
 		
 		empKhoaHocService.save(empKhoaHoc);
 		return "redirect:/khoahoc";
 	}
+	
+	
+	@PostMapping(value = "/saveempkhoahoc2/{number}")
+	public String saveEmpKhoaHoc2(@PathVariable(name = "number") int id, 
+			@ModelAttribute("empKhoaHoc") @Valid EmpKhoaHoc empKhoaHoc, BindingResult bindingResult, Model model)
+			throws ParseException {
+
+// 		Convert kieu date dai => simple date format
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+
+		// Lay het tat ca hoc vien cua khoa hoc do
+		KhoaHoc khID = khoaHocService.get(empKhoaHoc.getKhoaHoc().getKhoahoc_id());
+		List<EmpKhoaHoc> listhocvien = khID.getEmpKhoaHoc();
+		
+		
+		List<BaiKiemTra> listbkt = khID.getBaiKiemTra();
+		
+
+		for (EmpKhoaHoc hv : listhocvien) {
+			// Kiem tra ID => add or edit
+			if (empKhoaHoc.getId() == hv.getId()) {
+				break;
+			}
+			// info
+//			System.out.println(empKhoaHoc.getEmp().getId());
+//			System.out.println(hv.getEmp().getId());
+
+			if (empKhoaHoc.getEmp().getId() == hv.getEmp().getId()) {
+
+				model.addAttribute("errorEmp", "Người chọn đã có tên trong danh sách!");
+				model.addAttribute("empKhoaHoc", empKhoaHoc);
+				List<Emp> empList = empService.listAll();
+				model.addAttribute("empList", empList);
+
+				return "add_emp_khoahoc";
+			}
+		}
+
+		if (bindingResult.hasErrors()) {
+			if (empKhoaHoc.getThoigianbatdau() == null && empKhoaHoc.getThoigianketthuc() == null) {
+				empKhoaHoc.setThoigianbatdau(khID.getNgaybatdau());
+				empKhoaHoc.setThoigianketthuc(khID.getNgayketthuc());
+				
+				
+				//Set bai kiem tra doi voi hoc sinh moi duoc add vao
+				empKhoaHocService.save(empKhoaHoc);
+			
+				return "redirect:/khoahoc";
+			} else {
+			model.addAttribute("empKhoaHoc", empKhoaHoc);
+			List<Emp> empList = empService.listAll();
+			model.addAttribute("empList", empList);
+
+			return "add_emp_khoahoc";
+			}
+		}
+
+		KhoaHoc kh = khoaHocService.get(id);
+
+		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date startDate = sdf.parse(kh.getNgaybatdau().toString());
+		Date startDate2 = empKhoaHoc.getThoigianbatdau();
+		Date endDate = sdf.parse(kh.getNgayketthuc().toString());
+		Date endDate2 = empKhoaHoc.getThoigianketthuc();
+
+		LocalDateTime d1 = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault());
+		LocalDateTime d2 = LocalDateTime.ofInstant(startDate2.toInstant(), ZoneId.systemDefault());
+		LocalDateTime d3 = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault());
+		LocalDateTime d4 = LocalDateTime.ofInstant(endDate2.toInstant(), ZoneId.systemDefault());
+
+		if (Duration.between(d1, d2).toDays() < 0 || Duration.between(d3, d4).toDays() > 0) {
+			model.addAttribute("dateError1", "Ngày bắt đầu phải lớn hơn ngày bắt đầu của khóa học!");
+			model.addAttribute("dateError2", "Ngày kết thúc phải nhỏ hơn ngày kết thúc của khóa học!");
+			model.addAttribute("empKhoaHoc", empKhoaHoc);
+
+			List<Emp> empList = empService.listAll();
+			model.addAttribute("empList", empList);
+
+			return "add_emp_khoahoc";
+		}
+		
+		
+		
+		empKhoaHocService.save(empKhoaHoc);
+		return "redirect:/khoahoc";
+	}
+	
+	
 
 	@RequestMapping(value = "/deleteempkhoahoc/{id}", method = RequestMethod.GET)
 	public String deleteEmpKhoaHoc(@PathVariable("id") int id) {
 		
-//		EmpKhoaHoc empKhoaHoc = empKhoaHocService.get(id);
-//		List<DiemKiemTra> listDkt = empKhoaHoc.getDiemKiemTra();
-//		
-//		for(DiemKiemTra dkt: listDkt) {
-//			diemKiemTraService.delete(dkt.getIddiemkt());
-//		}
 		empKhoaHocService.delete(id);
 		
 		return "redirect:/khoahoc";

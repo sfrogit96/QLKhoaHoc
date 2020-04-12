@@ -64,31 +64,37 @@ public class ThongKeController {
 			System.out.println("Id của khóa học");
 			System.out.println(empKH.getKhoaHoc().getKhoahoc_id());
 			
-			
 			List<EmpKhoaHoc> listempKH2 = empKhoaHocService.listbykh(empKH.getKhoaHoc().getKhoahoc_id());
 			int j=0;
 			for(EmpKhoaHoc empKH2: listempKH2) {
 				if(empKH2.getEmp().getChucvu().getTenchucvu().equals("Học Viên")) {
 				j++;
-				System.out.println(j);
+				System.out.println("1//////////////////////////////////////////////////////////////////////////");
 				}
+				System.out.println("2//////////////////////////////////////////////////////////////////////////");
 			}
-			
 			ThongKe x = new ThongKe();
 			//cho id thong ke = id cua empkhoahoc
 			x.setIdthongke(empKH.getId());
-		    Date dateobj = new Date();
-		    x.setSolopdangday(i);
+		    
+//		    x.setSolopdangday(i);
 			x.setTongsohocvien(j);
-			x.setThoigianthongke(dateobj);
+//			x.setThoigianthongke(dateobj);
 			thongKeService.save(x);
 			
 			//set cho emkhoahoc = id cua thong ke 
 			empKH.setThongKe(thongKeService.get(empKH.getId()));
 			empKhoaHocService.save(empKH);
 			
-			System.out.println("////////////////////////////////DATE"+ empKhoaHocService.get(empKH.getId()).getThongKe().getThoigianthongke());
+			
 		}
+		Emp y = empService.get(id);
+		y.setSolopdangday(i);
+		Date dateobj = new Date();
+		y.setThoigianthongke(dateobj);
+		empService.save(y);
+		
+		
 		return "redirect:/thongke/giangvien";
 	}
 	

@@ -33,6 +33,8 @@ public class BaiKiemTra {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date thoigiankiemtra;
 	
+	private String thoigian;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "aht_bkt_kh")
 	private KhoaHoc kh;
@@ -82,6 +84,14 @@ public class BaiKiemTra {
 		this.thoigiankiemtra = thoigiankiemtra;
 	}
 	
+	
+	
+	public String getThoigian() {
+		return thoigian;
+	}
+	public void setThoigian(String thoigian) {
+		this.thoigian = thoigian;
+	}
 	public BaiKiemTra(){
 		
 	}

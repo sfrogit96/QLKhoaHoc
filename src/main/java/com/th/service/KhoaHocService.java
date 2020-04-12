@@ -86,7 +86,7 @@ public class KhoaHocService {
 			
 //			Font mainFont = FontFactory.getFont("Arial", 10, BaseColor.BLACK);
 			
-			Paragraph paragraph = new Paragraph("Danh sách học viên khóa học "+kH.getTenkhoahoc(), mainFont);
+			Paragraph paragraph = new Paragraph("Danh sách lớp học "+kH.getTenkhoahoc(), mainFont);
 			paragraph.setAlignment(Element.ALIGN_CENTER);
 			paragraph.setIndentationLeft(50);
 			paragraph.setIndentationRight(50);
@@ -105,7 +105,7 @@ public class KhoaHocService {
 			float[] columnWidths = { 2f, 2f, 2f, 2f };
 			table.setWidths(columnWidths);
 
-			PdfPCell ten = new PdfPCell(new Paragraph("Danh sách học viên", tableHeader));
+			PdfPCell ten = new PdfPCell(new Paragraph("Danh sách lớp học", tableHeader));
 
 			ten.setBorderColor(BaseColor.BLACK);
 			ten.setPaddingLeft(10);
@@ -115,7 +115,7 @@ public class KhoaHocService {
 			ten.setExtraParagraphSpace(5f);
 			table.addCell(ten);
 
-			PdfPCell mota = new PdfPCell(new Paragraph("Mô tả", tableHeader));
+			PdfPCell mota = new PdfPCell(new Paragraph("Chức vụ", tableHeader));
 
 			mota.setBorderColor(BaseColor.BLACK);
 			mota.setPaddingLeft(10);
@@ -158,7 +158,7 @@ public class KhoaHocService {
 				table.addCell(tenValue);
 				
 				
-				PdfPCell motaValue = new PdfPCell(new Paragraph(kh.getMota(), tableBody));
+				PdfPCell motaValue = new PdfPCell(new Paragraph(kh.getEmp().getChucvu().getTenchucvu(), tableBody));
 				motaValue.setBorderColor(BaseColor.BLACK);
 				motaValue.setPaddingLeft(10);
 				motaValue.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -166,8 +166,7 @@ public class KhoaHocService {
 				motaValue.setBackgroundColor(BaseColor.WHITE);
 				motaValue.setExtraParagraphSpace(5f);
 				table.addCell(motaValue);
-				
-				System.out.println("Hello: "+kh.getThoigianbatdau().toString());
+				 
  				
 				
 				PdfPCell ngaybatdauValue = new PdfPCell(new Paragraph(kh.getThoigianbatdau().toString(), tableBody));
@@ -212,7 +211,7 @@ public class KhoaHocService {
 		try {
 			FileOutputStream outputStream = new FileOutputStream(file+"/"+"employees"+".xls");
 			HSSFWorkbook workbook = new HSSFWorkbook();
-			HSSFSheet workSheet = workbook.createSheet("Danh sách học viên");
+			HSSFSheet workSheet = workbook.createSheet("Danh sách lớp học");
 			workSheet.setDefaultColumnWidth(30);
 			
 			HSSFCellStyle headerCellStyle = workbook.createCellStyle();
@@ -225,9 +224,10 @@ public class KhoaHocService {
 			firstName.setCellValue("Họ tên");
 			firstName.setCellStyle(headerCellStyle);
 			
-			HSSFCell lastName = headerRow.createCell(1);
-			lastName.setCellValue("Mô tả");
-			lastName.setCellStyle(headerCellStyle);
+			HSSFCell chucVu = headerRow.createCell(1);
+			chucVu.setCellValue("Chức vụ");
+			chucVu.setCellStyle(headerCellStyle);
+			
 			
 			HSSFCell email = headerRow.createCell(2);
 			email.setCellValue("Thời gian bắt đầu");
@@ -240,6 +240,7 @@ public class KhoaHocService {
 			int i = 1;
 
 			for(EmpKhoaHoc kh: khoahoc) {
+				 
 				HSSFRow bodyRow = workSheet.createRow(i);
 				
 				HSSFCellStyle bodyCellStyle = workbook.createCellStyle();
@@ -249,9 +250,10 @@ public class KhoaHocService {
 				firstNameValue.setCellValue(kh.getEmp().getTen());
 				firstNameValue.setCellStyle(bodyCellStyle);
 				
-				HSSFCell lastNameValue = bodyRow.createCell(1);
-				lastNameValue.setCellValue(kh.getMota());
-				lastNameValue.setCellStyle(bodyCellStyle);
+				HSSFCell chucVuValue = bodyRow.createCell(1);
+				chucVuValue.setCellValue(kh.getEmp().getChucvu().getTenchucvu());
+				chucVuValue.setCellStyle(bodyCellStyle);
+				
 				
 				HSSFCell emailValue = bodyRow.createCell(2);
 				emailValue.setCellValue(kh.getThoigianbatdau().toString());

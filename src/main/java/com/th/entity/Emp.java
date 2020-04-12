@@ -47,6 +47,12 @@ public class Emp {
 	private String sdt;
 	private ChucVu chucvu;
 	
+	private int solopdangday;
+	
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd hh:mm:ss a")
+	private Date thoigianthongke;
+	
 //	private Set<EmpKhoaHoc> empKhoaHoc = new HashSet<EmpKhoaHoc>();
 	private List<EmpKhoaHoc> empKhoaHoc;
 	
@@ -106,7 +112,23 @@ public class Emp {
 		this.sdt = sdt;
 	}
 	
+	
+	
   	
+	public int getSolopdangday() {
+		return solopdangday;
+	}
+	public void setSolopdangday(int solopdangday) {
+		this.solopdangday = solopdangday;
+	}
+	public Date getThoigianthongke() {
+		return thoigianthongke;
+	}
+	public void setThoigianthongke(Date thoigianthongke) {
+		this.thoigianthongke = thoigianthongke;
+	}
+	
+	
 	public Emp() {
 		
 	}

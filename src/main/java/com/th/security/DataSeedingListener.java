@@ -8,8 +8,10 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.th.entity.ChucVu;
 import com.th.entity.Role;
 import com.th.entity.User;
+import com.th.repository.ChucVuRepository;
 import com.th.repository.RoleRepository;
 import com.th.repository.UserRepository;
  
@@ -26,6 +28,9 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 	@Autowired 
 	private PasswordEncoder passwordEncoder;
 	
+	@Autowired 
+	private ChucVuRepository chucVuRepository;
+	
 	@Override
 	public void onApplicationEvent(ContextRefreshedEvent arg0) {
 		// Roles
@@ -41,7 +46,7 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		if (userRepository.findByEmail("admin@gmail.com") == null) {
 			User admin = new User();
 			admin.setEmail("admin@gmail.com");
-			admin.setPassword(passwordEncoder.encode("123"));
+			admin.setPassword(passwordEncoder.encode("Admin@1234"));
 			HashSet<Role> roles = new HashSet<>();
 			roles.add(roleRepository.findByName("ROLE_ADMIN"));
 			roles.add(roleRepository.findByName("ROLE_MANAGER"));
@@ -53,11 +58,23 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
 		if (userRepository.findByEmail("manager@gmail.com") == null) {
 			User user = new User();
 			user.setEmail("manager@gmail.com");
-			user.setPassword(passwordEncoder.encode("123"));
+			user.setPassword(passwordEncoder.encode("Manager@1234"));
 			HashSet<Role> roles = new HashSet<>();
 			roles.add(roleRepository.findByName("ROLE_MANAGER"));
 			user.setRoles(roles);
 			userRepository.save(user);
+		}
+		
+		if (chucVuRepository.findByTenchucvu("Học Viên") == null) {
+			ChucVu cv1 = new ChucVu();
+			cv1.setTenchucvu("Học Viên");
+			chucVuRepository.save(cv1);
+		}
+		
+		if (chucVuRepository.findByTenchucvu("Giảng Viên") == null) {
+			ChucVu cv2 = new ChucVu();
+			cv2.setTenchucvu("Giảng Viên");
+			chucVuRepository.save(cv2);
 		}
 	}
 }

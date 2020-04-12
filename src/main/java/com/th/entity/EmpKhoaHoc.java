@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
 
 @Entity
@@ -35,6 +36,8 @@ public class EmpKhoaHoc {
 	private Emp emp;
 	private KhoaHoc khoaHoc;
 	private List<DiemKiemTra> diemKiemTra; 
+	
+	
 	private ThongKe thongKe;
 	
 	
@@ -98,8 +101,8 @@ public class EmpKhoaHoc {
 		this.diemKiemTra = diemKiemTra;
 	}
 	
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	 
+	@OneToOne(fetch = FetchType.LAZY, optional = true)
 	@JoinColumn(name = "aht_thongke_id_thongke")
 	public ThongKe getThongKe() {
 		return thongKe;

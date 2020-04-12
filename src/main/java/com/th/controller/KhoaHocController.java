@@ -88,8 +88,8 @@ public class KhoaHocController {
 			Date endDate = kh.getNgayketthuc();
 			LocalDateTime d1 = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault());
 			LocalDateTime d2 = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault());
-			if(Duration.between(d1, d2).toDays()<30) {
-			model.addAttribute("dateError","Ngày kết thúc phải lớn hơn ngày bắt đầu 30 ngày!");
+			if(Duration.between(d1, d2).toDays()<0) {
+			model.addAttribute("dateError","Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu!");
 			model.addAttribute("attributekhoahoc",kh);
 			return "add_khoahoc";
 			}
@@ -120,8 +120,8 @@ public class KhoaHocController {
 			Date endDate = kh.getNgayketthuc();
 			LocalDateTime d1 = LocalDateTime.ofInstant(startDate.toInstant(), ZoneId.systemDefault());
 			LocalDateTime d2 = LocalDateTime.ofInstant(endDate.toInstant(), ZoneId.systemDefault());
-			if(Duration.between(d1, d2).toDays()<1) {
-			model.addAttribute("dateError","Ngày kết thúc phải lớn hơn ngày bắt đầu!");
+			if(Duration.between(d1, d2).toDays()<0) {
+			model.addAttribute("dateError","Ngày kết thúc phải lớn hơn hoặc bằng ngày bắt đầu!");
 			model.addAttribute("attributekhoahoc",kh);
 			return "edit_khoahoc";
 			}

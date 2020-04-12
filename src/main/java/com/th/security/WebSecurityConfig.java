@@ -3,6 +3,7 @@ package com.th.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -34,6 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
                 .antMatchers("/register").permitAll()
+//                .antMatchers(HttpMethod.GET, "/h2db/**").permitAll()
+//                .antMatchers(HttpMethod.POST, "/h2db/**").permitAll()
+                .antMatchers("/h2db/**").permitAll()
                 .antMatchers("/").hasAnyRole("ADMIN","MANAGER")
                 .antMatchers("/emp/**").hasRole("MANAGER")
                 .antMatchers("/khoahoc/**").hasRole("MANAGER")
@@ -53,6 +57,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     			.logout()
     			.logoutUrl("/logout")
     			.logoutSuccessUrl("/loginPage?logout");
-    			
+        
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+
     }	
 }

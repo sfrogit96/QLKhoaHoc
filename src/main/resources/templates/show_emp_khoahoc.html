@@ -32,7 +32,10 @@ h6::before {
 		<h3 class="p-2 mb-2 bg-white text-dark">LỚP HỌC: <span th:text="${tenkh}"></span></h3></div> 
 		<h5 class="p-2 mb-2 bg-info text-dark">TỔNG SỐ HỌC VIÊN: <span  th:text="${tongsohocvien}"></span> </h5>
 		<div th:if="${kh.emp.chucvu.tenchucvu}=='Giảng Viên'" th:each="kh: ${listmota}">
-		<h5 class="p-2 mb-2 bg-info text-dark">TÊN GIẢNG VIÊN: <span  th:text="${kh.emp.ten}"></span> &nbsp;&nbsp; <a th:href="@{'/editempkhoahoc/' + ${kh.id}}"><i class="fas fa-pencil-alt"></i></a></h5>
+		<h5 class="p-2 mb-2 bg-info text-dark">TÊN GIẢNG VIÊN: <span  th:text="${kh.emp.ten}"></span> 
+		&nbsp;&nbsp; <a th:href="@{'/editempkhoahoc/' + ${kh.id}}"><i class="fas fa-pencil-alt"></i></a>
+		&nbsp;&nbsp; <a th:href="@{'/deleteempkhoahoc/' + ${kh.id}}"><i class="fas fa-user-times"></i></a>
+		</h5>
 		<h5 class="p-2 mb-2 bg-info text-dark">MÔ TẢ: </h5>
 		 <div class="container"><p style="white-space: pre; margin-left:70px; " th:text="${kh.mota} "></p> </div> 
 		</div>
@@ -60,12 +63,11 @@ h6::before {
 				  <td th:text="${kh.thoigianketthuc}"></td> 
 				  <td>
 				  <a th:href="@{'/editempkhoahoc/' + ${kh.id}}"><i class="fas fa-pencil-alt"></i></a>&nbsp;&nbsp;
-				  <a th:href="@{'/deleteempkhoahoc/'+${kh.id}}"><i class="fa fa-trash"></i></a>
+				  <a th:href="@{'/deleteempkhoahoc/'+${kh.id}}"><i class="fas fa-user-times"></i></a>
 				  </td>
 				</tr>
 			</tbody>
 		</table>
-	 
  </div>                  
 	<!-- End Main content -->
         

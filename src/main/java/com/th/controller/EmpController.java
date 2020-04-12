@@ -117,6 +117,8 @@ public class EmpController {
 				if(bindingResult.hasErrors()){
 					return "edit_hocvien";
 				}
+				//Add thong ke
+				
 				empService.save(emp);
 				return "redirect:/hocvien";
 			}
